@@ -1,0 +1,264 @@
+@use "../foundation/breakpoints" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/variables" as *;
+/* ===================================================
+header
+====================================================*/
+.header{
+	#header {
+		position: relative;
+		z-index: 10;
+		height: 90px;
+		@media screen and (max-width: 768.98px){
+			height: 70px;
+		}
+		h1{
+			color: #000000;
+			font-size: 14px;
+			@include mq(sm){
+				font-size: 13px;
+			}
+			@media screen and (max-width: 369.98px){
+				font-size: 12px;
+			}
+		}
+		.ham__fixed,.logo__fixed{
+			position: absolute;
+			width: 100%;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 90px;
+			max-width: 960px;
+			margin: 0 auto;
+			@media screen and (max-width: 768.98px){
+				height: 70px;
+			}
+		}
+		.header__fixed{
+			position: fixed;
+			width: 100%;
+			height: 90px;
+			z-index: 20;
+			background-image: radial-gradient(circle at 0% 50%, rgba(246, 241, 228, 1), rgba(241, 233, 212, 1) 15%, rgba(221, 206, 156, 1) 69%);;
+			// background-image: linear-gradient(150deg, rgba(246, 241, 228, 1), rgba(221, 206, 156, 1));
+			@media screen and (max-width: 768.98px){
+				height: 70px;
+			}
+		}
+		.ham {
+			position: absolute;
+			top: 10px;
+			right: 0;
+			z-index: 21;
+			border-radius: 10px;
+			transition: 0.3s ease;
+			cursor: pointer;
+			display: block;
+			border-radius: 9999px;
+			width: 70px;
+			height: 70px;
+			&:hover {
+				opacity: 0.7;
+			}
+			@media screen and (max-width: 768.98px){
+				right: 0;
+				top:0;
+				width: 70px;
+				height: 70px;
+			}
+			span {
+				background-color: #000000;
+				height: 2px;
+				position: absolute;
+				right: 19px;
+				width: 32px;
+				z-index: 9;
+				border-radius: 9999px;
+				transition: all 0.3s ease-in-out; //spanにtransitionつける
+				@media screen and (max-width: 768.98px){
+					height: 2px;
+					width:30px;
+					right: 15px;
+				}
+				&:nth-child(1) {
+					top: 22px;
+					@media screen and (max-width: 768.98px){
+						top: 24px;
+					}
+				}
+				&:nth-child(2) {
+					top: 34px;
+					// @media screen and (max-width: 768.98px){
+					// 	top:36px;
+					// }
+				}
+				&:nth-child(3) {
+					top: 46px;
+					@media screen and (max-width: 768.98px){
+						top: 44px;
+					}
+				}
+			}
+		}
+		.globalMenu {
+			opacity: 100;
+			z-index: 9;
+			transition: opacity 0.6s ease, visibility 0.6s ease;
+			background-color: #000000;
+			width: 100%;
+			height: auto;
+			position: fixed;
+			visibility: visible;
+			top: 50px;
+			left: 0%;
+			color: #fff;
+			transition-duration: .6s;
+			padding: 0 15px 60px;
+			overflow-y: hidden;
+			transform: translate3d(0, -120%, 0);
+			transition: transform .8s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
+			@media screen and (max-width: 768.98px){
+				height: 100lvh;
+			}
+			// transform: translate3d(0, 0, 0);
+			&.out{
+				animation: menuOut .8s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
+			}
+			@keyframes menuOut {
+				0%{
+					transform: translate3d(0, 0, 0);
+				}
+				// 60%{
+				// 	transform: translate3d(0, 3%, 0);
+				// }
+				100%{
+					transform: translate3d(0, -120%, 0);
+				}
+			}
+			@media screen and (max-width: 768.98px){
+				top: 40px;
+			}
+			ul {
+				text-align: center;
+				color: #fff;
+				@include fl(center,center);
+				flex-direction: column;
+				gap: 34px;
+				margin-top: 95px;
+				@media screen and (max-width: 768.98px){
+					gap: 38px;
+					margin-top:82px;
+				}
+				li {
+					opacity: 0;
+					transform: translate3d(0, 7rem, 0) ;
+					transition: .9s ease;
+					a {
+						color: #fff;
+						@include ls(25);
+						font-size: 16px;
+						@media screen and (max-width: 768.98px){
+							font-size: 15px;
+						}
+						// @include lh(24,30);
+					}
+					a.nav-tour{
+						@include fs(24,20,40);
+						font-weight:600 ;
+					}
+					p{
+						color: #ACACAC;
+					}
+				}
+			}
+		}
+		.logo__fixed{
+			color: #000000;
+			@include fl(flex-start,center);
+			gap: 29px;
+			z-index: 3;
+			@include mq(sm){
+				gap: 0;
+			}
+			a{
+				img{
+					@media screen and (max-width: 768.98px){
+						margin-left: 15px;
+						max-width: 107px;
+					}
+				}
+			}
+			p{
+				color: #000000;
+			font-size: 14px;
+			}
+		}
+		//active
+		.globalMenu.active {
+			animation: menuActive 1s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
+			// transform: translate3d(0, 0, 0);
+			z-index: -1;
+			@keyframes menuActive {
+				0%{
+					transform: translate3d(0, -120%, 0);
+				}
+				60%{
+					transform: translate3d(0, 3%, 0);
+				}
+				100%{
+					transform: translate3d(0, 0, 0);
+				}
+			}
+			li{
+				opacity: 1;
+				transform: translate3d(0, 0, 0) ;
+				transition-delay: .2s;
+				// &:nth-child(2){
+				// 	transition-delay: 0.3s;
+				// }
+				// &:nth-child(3){
+				// 	transition-delay: 0.4s;
+				// }
+				// &:nth-child(4){
+				// 	transition-delay: 0.5s;
+				// }
+				// &:nth-child(5){
+				// 	transition-delay: 0.6s;
+				// }
+			}
+		}
+	
+		.ham.active span {
+			transition: all 0.3s ease-in-out; //spanにtransitionつける
+			position: absolute;
+			top: 33px;
+			right: 23px;
+			width: 32px;
+			@media screen and (max-width: 768.98px){
+				height: 2px;
+				width:30px;
+				right: 15px;
+			}
+			&:nth-child(1) {
+				transform: rotate(45deg);
+			}
+			&:nth-child(2),
+			&:nth-child(3) {
+				transform: rotate(-45deg);
+			}
+		}
+		.for_sp{
+			display: inline-block;
+		@media screen and (min-width: 769px){
+					display: none;
+			}
+		}
+		.for_pc{
+				display: none;
+			@media screen and (min-width: 769px){
+						display:  inline-block;
+				}
+		}
+	}
+}

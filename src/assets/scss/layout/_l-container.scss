@@ -1,0 +1,15 @@
+@use "../foundation/breakpoints" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/variables" as *;
+/* ===================================================
+l-container
+====================================================*/
+
+	.l-container{
+		max-width: 880px;
+		margin: 40px auto;
+		width: 100%;
+		@include mq(sm){
+			padding: 0 15px;
+		}
+	}

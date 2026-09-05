@@ -1,0 +1,15 @@
+// /* ブレイクポイントの設定 */
+// $breakpoint-sm: 767.98px !default;
+// $breakpoint-md: 767.98px !default;
+// $breakpoint-lg: 768px !default;
+
+$breakpoints: (
+	// 'sm': 'screen and (max-width: 767.98px)',
+	// 'md': 'screen and (min-width: 768px)',
+	// 'lg': 'screen and (min-width: 1027.98px)',
+	// 'xl': 'screen and (min-width: 1200px)',
+	"lg": "screen and (min-width: 768px)",
+  "md": "screen and (max-width: 768px)",
+  "sm": "screen and (max-width: 767.98px)",
+  "sm-screen": "screen and (max-width: 320px)",
+) !default;

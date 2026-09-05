@@ -1,0 +1,219 @@
+@use "./mixins" as *;
+@use "./breakpoints" as *;
+@use "./variables" as *;
+
+/* ===================================================
+遅延読み込み
+====================================================*/
+.trigger{
+    opacity: 0;
+}
+.trigger.in.is-active {
+	animation: fadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes fadeIn {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		display: block;
+		opacity: 1;
+	}
+}
+
+/* ===============
+js-trigger up
+===============*/
+.trigger.up.is-active {
+animation: slideUp 2s .3s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+@keyframes slideUp {
+0% {
+	transform: translateY(180px);
+	opacity: 0;
+}
+
+100% {
+	transform: translateY(0);
+}
+
+40%, 100% {
+	opacity: 1;
+}
+}
+
+// @keyframes slideLeft {
+// 	0% {
+// 		transform: translateX(180px);
+// 		opacity: 0;
+// 	}
+
+// 	100% {
+// 		transform: translateX(0);
+// 	}
+
+// 		40%, 100% {
+// 			opacity: 1;
+// 		}
+// 	}
+
+// 徐々に画像を表示
+// img{
+// 	width: 100%;
+// 	height: auto;
+// 	clip-path: inset(0 100% 0 0);
+// 	animation: toShow 1s ease forwards;
+// }
+// @keyframes toShow {
+// 	to {
+// 			clip-path: inset(0 0% 0 0); 
+// 	}
+// }
+
+// 上下に揺れる
+// @keyframes upDown {
+//   0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+//   10%  { transform: scale(1.1, 0.9) translate(0%, 5%); opacity: 1;}
+//   40%  { transform: scale(1.2, 0.8) translate(0%, 15%);  opacity: 1;}
+//   50%  { transform: scale(1.0, 1.0) translate(0%, 0%);  opacity: 1;}
+//   60%  { transform: scale(0.9, 1.2) translate(0%, -70%); opacity: 1; }
+//   75%  { transform: scale(0.9, 1.2) translate(0%, -20%); opacity: 1; }
+//   85%  { transform: scale(1.2, 0.8) translate(0%, 15%);  opacity: 1;}
+//   100% { transform: scale(1.0, 1.0) translate(0%, 0%);  opacity: 1;}
+// }
+
+// 画像など左から右に表示
+// @keyframes leftToRight{
+//   100% {
+//     transform: translateX(100%);
+//   }
+// }
+
+// スクロールでフェードイン、最後上下に揺れる
+// .u-scrollAnim {
+// 	transform: translateY(200px);
+// 	opacity: 0;
+// 	transition: opacity .6s,transform .6s cubic-bezier(0.025, 0.905, 0.31, 1.08)
+// 	}
+
+// .u-scrollAnim.-animated {
+// 	transform: translateY(0) rotate(0) !important;
+// 	opacity: 1
+// }
+
+
+// ひだりから右にだんだん見えてくる
+// @keyframes fullWidth {
+// 	0%{
+// 		opacity: 0;
+// 	}
+// 	10%{
+// 		transition: width .74s cubic-bezier(.23,1,.32,1);
+// 		opacity: 1;
+// 	}
+// 	100%{
+// 		width: 100%;
+// 		opacity: 1;
+// 	}
+// }
+
+// テキストの背景色が伸びてテキストが見える
+
+// .effect-block span{
+// opacity: 0;
+// }
+// .trigger.in.is-active.effect-block span {
+// 		opacity: 0;
+// 		animation: text-visible 0.0001s linear forwards;
+// 		animation-delay: 0.5s;
+// }
+// .trigger.in.is-active.effect-block::after {
+// 	content: "";
+// 	top: 0;
+// 	left: 0;
+// 	position: absolute;
+// 	width: 0%;
+// 	height: 100%;
+// 	background: red;
+// 	animation: effect-block 1.2s cubic-bezier(.17,.67,.49,.99) forwards;
+// }
+
+// #another span {
+// 		/* animation-delay: 0.5s; */
+// 	}
+// #another.effect-block:after {
+// 		background: blue;
+// 		/* animation-delay: 1.4s; */
+// 	}
+// @keyframes effect-block {
+// 	0% {
+// 		left: 0;
+// 		width: 0%;
+// 	}
+// 	50% {
+// 		left: 0;
+// 		width: 100%;
+// 	}
+// 	100% {
+// 		left: 100%;
+// 		width: 0%;
+// 	}
+// }
+
+// @keyframes text-visible {
+// 	0% {
+// 		opacity: 0;
+// 	}
+// 	100% {
+// 		opacity: 1;
+// 	}
+// }
+
+// 一旦大きくなってからまた元サイズに戻る
+// @keyframes scallOff{
+// 	0% {
+// 		-webkit-transform: scale(1);
+// 		transform: scale(1);
+// 	}
+// 	35% {
+// 		-webkit-transform: scale(1.07);
+// 		transform: scale(1.07);
+// 	}
+// 	100% {
+// 		-webkit-transform: scale(0);
+// 		transform: scale(0);
+// 	}
+// }
+// 円形から広がっていく
+// .block.active {
+// 	animation: clipPath 3s cubic-bezier(.220, .60, .350, 1) 0s 1 forwards;
+// 	}
+
+// 	@keyframes clipPath {
+// 		0% {
+// 		clip-path: circle(0 at 50% 50%);
+// 		}
+// 		100% {
+// 		clip-path: circle(100% at 50% 50%);
+// 		}
+// 	}
+// JS無効の場合の対策
+// @media (scripting: none) {
+// 	.trigger {
+// 		opacity: 1;
+// 	}
+// 	#loading,#loading__logo{
+// 		display: none;
+// 	}
+// 	html {
+// 		scroll-behavior: smooth;
+// 	}
+// }

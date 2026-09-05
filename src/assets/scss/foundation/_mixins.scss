@@ -1,0 +1,172 @@
+@use "./breakpoints" as *;
+@use 'sass:map';
+@use 'sass:meta';
+
+@mixin mq($breakpoint: md) {
+  @media #{map.get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+// ホバーをPCのみで指定
+@mixin hover {
+	@media (hover: hover){
+		&:where(:any-link, :enabled, summary):hover {
+		@content;
+	}
+	}
+}
+
+// font-sizeのレスポンシブ
+@function fsClamp($min, $max, $min-view-port: 375, $max-view-port: 768) {
+	$valiable-part: calc(($max - $min) / ($max-view-port - $min-view-port));
+	$constant: calc(($max - $max-view-port * $valiable-part) / 16);
+	$min-rem: calc($min / 16 * 1rem);
+	$max-rem: calc($max / 16 * 1rem);
+	$variable-rem: calc($constant * 1rem);
+	$variable-vw: calc(100 * $valiable-part * 1vw);
+
+	@return clamp($min-rem, $variable-rem + $variable-vw, $max-rem);
+}
+
+// font-size: clamp(pc値,最小値,sp最大値)※単位pxは書かなくてよい;
+@mixin fs($pc,$spSmallest,$spBiggest){
+	font-size: #{$pc}px;
+		@include mq(sm){
+			font-size: fsClamp($spSmallest,$spBiggest);
+		}
+}
+
+
+// display:flexのmixin
+@mixin fl($justify-content,$align-items){
+	display: flex;
+	justify-content: $justify-content;
+	align-items: $align-items;
+}
+
+
+// 【相対】margin・padding(350*2が基準)　スマホカンプが750以外の時は数字を変える
+@mixin mt($sp,$pc){
+	margin-top: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		margin-top: $pc + px;
+	}
+}
+@mixin mb($sp,$pc){
+	margin-bottom: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		margin-bottom: $pc + px;
+	}
+}
+@mixin mr($sp,$pc){
+	margin-right: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		margin-right: $pc + px;
+	}
+}
+@mixin ml($sp,$pc){
+	margin-left: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		margin-left: $pc + px;
+	}
+}
+@mixin pt($sp,$pc){
+	padding-top: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		padding-top: $pc + px;
+	}
+}
+@mixin pb($sp,$pc){
+	padding-bottom: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		padding-bottom: $pc + px;
+	}
+}
+@mixin pr($sp,$pc){
+	padding-right: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		padding-right: $pc + px;
+	}
+}
+@mixin pl($sp,$pc){
+	padding-left: min(calc(100vw / 750 * #{$sp}), #{$sp}px);
+	@include mq(lg){
+		padding-left: $pc + px;
+	}
+}
+
+// 横幅100vw
+@mixin maxWid{
+	width: 100vw;
+	margin: 0 calc(50% - 50vw);
+}
+
+
+// タイポグラフィ
+@mixin lh($num, $fs){
+	line-height: calc($num / $fs);
+}
+@mixin ls( $trakking ) {
+	letter-spacing:calc($trakking / 1000) + em;
+}
+
+// positionの中央よせ
+@mixin position{
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right:0;
+	left: 0;
+	margin: 0 auto;
+}
+
+// backgruond-imageのデフォ
+@mixin bG($image,$aspect,$max-width){
+	display: block;
+	aspect-ratio: $aspect;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-image:url($image);
+	width: 100%;
+	max-width: $max-width;
+}
+
+
+// pxからvwに計算　 （例） width: vw(40px); width: vw(40px, 768px); width: vw(50%);
+@function vw($px, $base: 375px) {
+	$value: $px;
+	// 単位がpx以外の場合は警告を出してそのまま返す
+	@if (unit($px) != 'px') {
+	@warn 'vw()の引数にpx以外の値を指定しても計算できません';
+	@return $value;
+	}
+	$value: (strip-unit($px) / strip-unit($base)) * 100vw;
+
+	@return $value;
+}
+
+// iframeの比率を維持したままレスポンシブ対応　例 @include aspect-ratio(16,9);
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&::before {
+	content: '';
+	float: left;
+	padding-top: ($height / $width) * 100%;
+	}
+
+	&::after {
+	content: '';
+	display: block;
+	clear: both;
+	}
+
+	& > :first-child {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	}
+}

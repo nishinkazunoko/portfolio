@@ -1,0 +1,18 @@
+// 変数に色を代入
+$color: #000000;
+
+//fot分を使って繰り返しの処理（1-7までにmargin-topを10ずつ増やしていく）
+// @for $value from 1 through 7 {
+// 	.mt_#{$value * 10} {
+// 		margin-top: 10px * $value;
+// 	}
+// }
+//fot分を使って繰り返しの処理（1-7までに連番をふって画像を出力する）
+// @for $i from 1 through 3 {
+// 	.sample__slide#{$i} {
+// 		background:url(../img/slide#{$i}.webp) center center /cover no-repeat;
+// 	}
+// 	// &__slide#{$i} {
+// 	// 	background:url(../img/slide#{$i}.webp) center center /cover no-repeat;
+// 	// }
+// }

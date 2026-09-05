@@ -1,0 +1,65 @@
+@use "./breakpoints" as *;
+@use "./mixins" as *;
+@use "./variables" as *;
+
+/* ===================================================
+共通項目
+====================================================*/
+
+* {
+	&,
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
+}
+// box-shadow:inset or none　x軸(値が+→右方向に影)　y軸(値が+→下方向に影)　ぼかしの距離　影の大きさ　影の色の変更;
+// box-shadow: 0 8px 16px rgb(42 171 159 / 40%);
+
+html{
+	font-size: 62.5%;
+	// scroll-behavior: smooth;
+}
+body{
+	margin: 0;
+	:focus-visible{
+		outline: 2px solid #000000;
+	}
+	p,h1,h2,h3,h4,ul,li{
+		padding: 0;
+		margin: 0;
+		font-size: 1.6rem;
+		line-height: 1.6;
+	}
+	a,button{
+		text-decoration: none;
+		display: block;
+		touch-action: manipulation;
+		word-break: break-all;
+		transition: all .3s;
+	}
+	li{
+			list-style: none;
+		}
+.for_sp{
+		display: inline-block;
+		@include mq(lg){
+				display: none;
+			}
+		}
+.for_pc{
+		display: none;
+		@include mq(lg){
+				display:  inline-block;
+		}
+	}
+	//固定headerの時のアンカーリンク対策
+.for_anchor{
+	padding-top: 110px;//headerの高さに合わせる
+	margin-top: -110px;
+}
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+}

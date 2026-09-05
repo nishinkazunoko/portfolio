@@ -11,6 +11,11 @@
 
 html {
   font-size: 62.5%;
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  cursor: none;
 }
 
 body {
@@ -424,40 +429,8 @@ footer {
  * object//　繰り返し使用されるビジュアルパターン
  *--------------------------------------*/
 /* ===================================================
-buttons
+wands
 ====================================================*/
-.btn {
-  font-size: 20px;
-  padding: 30px 0;
-  border-radius: 9999px;
-  text-align: center;
-  margin: 0 auto;
-  transition: 0.3s ease;
-  font-size: 30px;
-  line-height: 1;
-}
-@media screen and (max-width: 767.98px) {
-  .btn {
-    font-size: 25px;
-    padding: 25px 0;
-  }
-}
-.btn__off {
-  color: #7F7F7F;
-  background-color: #AAAAAA;
-  border: 4px solid #AAAAAA;
-}
-.btn__off:hover {
-  color: #7F7F7F;
-  background-color: #AAAAAA;
-  border: 4px solid #AAAAAA;
-}
-
-.btnWid {
-  max-width: 480px;
-  width: 100%;
-}
-
 /* ===================================================
 headings
 ====================================================*/

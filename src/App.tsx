@@ -1,17 +1,16 @@
-import { useState } from 'react'
-import heroImg from './assets/images/hero.png'
-import reactLogo from './assets/images/react.svg'
-import viteLogo from './assets/images/vite.svg'
-import './App.css'
+// import { useState } from 'react'
+import './assets/scss/resset.css'
 import './assets/scss/style.css'
+import Wand from './components/Wand'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
       <main>
         <p>portfolioを作ります</p>
+        <Wand />
       </main>
     </>
   )

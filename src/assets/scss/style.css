@@ -429,11 +429,222 @@ footer {
  * object//　繰り返し使用されるビジュアルパターン
  *--------------------------------------*/
 /* ===================================================
-wands
+bg
 ====================================================*/
+.portfolio-wrap {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  /* ベースとなるアンティークベージュ */
+  background-color: #f1ebd9;
+  cursor: none; /* マウス矢換を消して杖にする */
+  /* 💡 境界線を 0 にして強制的にパキッと割ることで、確実に2pxの太い格子線を描きます */
+  background-image: linear-gradient(#e5dac1 2px, transparent 2px), linear-gradient(90deg, #e5dac1 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-repeat: repeat;
+  font-family: "MS Gothic", monospace;
+  image-rendering: pixelated;
+}
+
+.win-window {
+  background-color: #fffaf0;
+  border: 4px solid #740001;
+  border-radius: 4px;
+  box-shadow: 6px 6px 0px 0px #ae0001;
+  padding: 4px;
+  width: 100%;
+  max-width: 550px;
+  box-sizing: border-box;
+  margin: 10vh auto 0;
+}
+
+.win-titlebar {
+  background-color: #740001;
+  color: #eeba30;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.win-btn {
+  background-color: #eeba30;
+  border: 2px solid #740001;
+  color: #740001;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0px 4px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+
+.win-content {
+  margin-top: 4px;
+  padding: 20px;
+  color: #740001;
+  min-height: 200px;
+}
+
+.win-content h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  color: #740001;
+  border-bottom: 2px dashed #ae0001;
+  padding-bottom: 8px;
+}
+
+.win-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2c1a04;
+}
+
 /* ===================================================
-headings
+📁 desktop-icons (手紙フォルダの配置とビット絵用設定)
 ====================================================*/
+.desktop-icons {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* ウィンドウの下に潜り込ませる */
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+  text-align: center;
+  cursor: none;
+}
+
+.folder-icon {
+  width: 55px;
+  height: auto;
+  image-rendering: pixelated;
+  transition: transform 0.1s ease;
+}
+
+.icon-item:hover .folder-icon {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.icon-label {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #740001;
+  font-weight: bold;
+  background-color: #fffaf0;
+  padding: 3px 8px;
+  border: 2px solid #740001;
+  border-radius: 3px;
+  box-shadow: 2px 2px 0px #dbcfb4;
+}
+
+/* ===================================================
+📄 works (実績ウィンドウ内のスクロール & ボタン装飾)
+====================================================*/
+.scroll-box {
+  max-height: 140px;
+  overflow-y: scroll;
+  border: 2px dashed #ae0001;
+  padding: 8px;
+  background-color: #fffdf9;
+}
+.scroll-box::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-box::-webkit-scrollbar-track {
+  background: #fffaf0;
+}
+.scroll-box::-webkit-scrollbar-thumb {
+  background: #740001;
+  border-radius: 2px;
+}
+
+.work-item-btn {
+  padding: 8px;
+  margin-bottom: 6px;
+  background-color: #fffaf0;
+  border: 2px solid #740001;
+  color: #740001;
+  font-weight: bold;
+  cursor: none;
+  font-size: 13px;
+  box-shadow: 2px 2px 0px #dbcfb4;
+  text-align: left;
+}
+
+.work-item-btn:hover {
+  background-color: #eeba30;
+  color: #740001;
+}
+
+.win-back-btn {
+  background-color: #fffaf0;
+  border: 2px solid #740001;
+  color: #740001;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  box-shadow: 2px 2px 0px #dbcfb4;
+  cursor: none;
+}
+
+.win-back-btn:hover {
+  background-color: #740001;
+  color: #eeba30;
+}
+
+/* ===================================================
+✨ magic-sparkle (クリック時の魔法が弾けて消えるエフェクト)
+====================================================*/
+.wand-soarkle {
+  animation: magic-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes magic-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    filter: drop-shadow(0 0 0px #fff);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #eeba30);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+/* ===================================================
+folder
+====================================================*/
+.folders .folder01 {
+  position: absolute;
+}
+
 .ta-l {
   text-align: left !important;
 }

@@ -21,8 +21,9 @@
  * object//　繰り返し使用されるビジュアルパターン
  *--------------------------------------*/
 // component 単一パーツ（ボタン・見出しなど）
-@use "./object/component/c-wand";
-@use "./object/component/c-headline";
+@use "./object/component/c-bg";
+@use "./object/component/c-folder";
+
 // utility 中日のindex.resからいくつか
 @use "./object/utility/common";
 

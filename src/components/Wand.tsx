@@ -1,11 +1,39 @@
 import { useEffect, useRef, useState } from 'react'
 import wandImg from '../assets/images/wand.png'
 
+interface ParticleData {
+  tx: string;
+  ty: string;
+  size: string;
+}
+
 interface Sparkle {
   id: number;
   x: number;
   y: number;
+  color: string;
+  spell: string;
+  particles: ParticleData[];
 }
+
+const spells = [
+  "Lumos!", 
+  "Expecto Patronum!", 
+  "Wingardium Leviosa!",
+  "Expelliarmus!", 
+  "Alohomora!", 
+  "Accio!", 
+  "Stupefy!"
+];
+
+const magicColors = [
+  "#00ffff",
+  "#00ffcc",
+  "#ff3399",
+  "#9933ff",
+  "#ffff33",
+  "#ff6600"
+];
 
 function Wands() {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
@@ -18,16 +46,36 @@ function Wands() {
     };
 
     const handleClick = (e: MouseEvent) => {
+      const randomColor = magicColors[Math.floor(Math.random() * magicColors.length)];
+      const randomSpell = spells[Math.floor(Math.random() * spells.length)];
+
+      const particleCount =  12 + Math.floor(Math.random() * 5);
+      const generatedParticles: ParticleData[] = [];
+
+      for(let i = 0; i < particleCount; i++){
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 40 + Math.random() * 80;
+        generatedParticles.push({
+          tx: `${Math.cos(angle) * velocity}px`,
+          ty: `${Math.sin(angle) * velocity}px`,
+          size: `${3 + Math.random() * 4}px`
+        });
+      }
+       
       const newSparkle: Sparkle = {
-        id: Date.now(),
+        id: Date.now() + Math.random(),
         x: e.clientX,
         y: e.clientY,
+        color: randomColor,
+        spell: randomSpell,
+        particles: generatedParticles
       };
+
       setSparkles((prev) => [...prev, newSparkle]);
 
       setTimeout(() => {
         setSparkles((prev) => prev.filter((s) => s.id !== newSparkle.id));
-      }, 800);
+      }, 1200);
     };
 
     let animationFrameId: number;
@@ -64,7 +112,7 @@ function Wands() {
             top: 0,
             left: 0,
             width: '50px',
-            transform: 'translate(-10%, -90%)',
+            transform: 'translate(-90%, -20%)',
             pointerEvents: 'none',
             zIndex: 9999,
             imageRendering: 'pixelated',
@@ -74,20 +122,34 @@ function Wands() {
 
       {sparkles.map((sparkle) => (
         <div
-          key={sparkle.id}
-          className="wand-soarkle"
-          style={{
-            position: 'fixed',
-            top: sparkle.y,
-            left: sparkle.x,
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none',
-            fontSize: '28px',
-            zIndex: 9998,
-          }}
-        >
-          ⭐️
+        key={sparkle.id}
+        className="magic-effect"
+        style={{
+          position: 'fixed',
+          left: sparkle.x,
+          top: sparkle.y,
+          zIndex: 9998,
+          ['--magic-color' as any]: sparkle.color, 
+        }}
+      >
+        <div className="spark" />
+          {sparkle.particles.map((p, idx) => (
+            <div
+              key={idx}
+              className="particle"
+              style={{
+                ['--tx' as any]: p.tx,
+                ['--ty' as any]: p.ty,
+                ['--size' as any]: p.size,
+              }}
+            />
+          ))}
+
+          <div className="spell-text">
+            {sparkle.spell}
+          </div>
         </div>
+        
       ))}
     </>
   );

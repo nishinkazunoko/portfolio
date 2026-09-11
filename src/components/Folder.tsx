@@ -1,25 +1,25 @@
+import { Link } from 'react-router-dom';
 import folderImg from '../assets/images/folder.png' 
+import Wands from './Wand'
 
-interface FoldersProps {
-  onOpenProfile: () => void;
-  onOpenWorks: () => void;
-}
-
-function Folders({ onOpenProfile, onOpenWorks }: FoldersProps) {
+function Folders() {
   return (
-    <div className="desktop-icons">
-      
-      <div className="icon-item" onClick={onOpenProfile}>
-        <img src={folderImg} alt="Profile" className="folder-icon" />
-        <span className="icon-label">Profile.exe</span>
-      </div>
+    <>
+    <div className="folder-icons">
+      <Link to="/proflie/" className="icon-item">
+        <img src={folderImg} alt="自己紹介を見る"/>
+        <span className="icon-label">自己紹介を見る</span>
+      </Link>
 
-      <div className="icon-item" onClick={onOpenWorks}>
-        <img src={folderImg} alt="Works" className="folder-icon" />
-        <span className="icon-label">Works.exe</span>
-      </div>
+      <Link to="/works/" className="icon-item">
+        <img src={folderImg} alt="実績一覧を見る"/>
+        <span className="icon-label">実績一覧を見る</span>
+      </Link>
 
     </div>
+    <Wands />
+
+    </>
   );
 }
 

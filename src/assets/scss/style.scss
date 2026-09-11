@@ -11,27 +11,18 @@
  * layout // ヘッダー・メインのコンテンツエリア・サイドバー・フッターのスタイル
  *--------------------------------------*/
 @use "./layout/l-main";
-@use "./layout/l-inner";
-@use "./layout/l-container";
-@use "./layout/l-header";
-@use "./layout/l-footer";
+// @use "./layout/l-inner";
+// @use "./layout/l-container";
+// @use "./layout/l-header";
+// @use "./layout/l-footer";
 
 
 /*--------------------------------------*
  * object//　繰り返し使用されるビジュアルパターン
  *--------------------------------------*/
 // component 単一パーツ（ボタン・見出しなど）
-@use "./object/component/c-bg";
-@use "./object/component/c-folder";
-@use "./object/component/c-wand";
 
 // utility 中日のindex.resからいくつか
 @use "./object/utility/common";
-
-/*--------------------------------------*
- * page ページ単位のスタイル セクション名などで分ける
- *--------------------------------------*/
-//  TOP　
-@use "./object/pages/home/p-mv";
-//  about
-@use "./object/pages/about/p-about";
+@use "./object/components/c-folderIcons";
+@use "./object/components/c-wand";

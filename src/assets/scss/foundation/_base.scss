@@ -23,7 +23,7 @@ html{
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
-	cursor: none;
+	
 }
 body{
 	margin: 0;
@@ -34,7 +34,7 @@ body{
 		padding: 0;
 		margin: 0;
 		font-size: 1.6rem;
-		line-height: 1.6;
+		line-height: 1.8;
 	}
 	a,button{
 		text-decoration: none;
@@ -42,6 +42,11 @@ body{
 		touch-action: manipulation;
 		word-break: break-all;
 		transition: all .3s;
+		cursor: pointer!important;
+		&:hover{
+			position: relative;
+			z-index: 9999; 
+		}
 	}
 	li{
 			list-style: none;

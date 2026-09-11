@@ -15,7 +15,6 @@ html {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  cursor: none;
 }
 
 body {
@@ -28,7 +27,7 @@ body p, body h1, body h2, body h3, body h4, body ul, body li {
   padding: 0;
   margin: 0;
   font-size: 1.6rem;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 body a, body button {
   text-decoration: none;
@@ -36,6 +35,11 @@ body a, body button {
   touch-action: manipulation;
   word-break: break-all;
   transition: all 0.3s;
+  cursor: pointer !important;
+}
+body a:hover, body button:hover {
+  position: relative;
+  z-index: 9999;
 }
 body li {
   list-style: none;
@@ -112,622 +116,22 @@ js-trigger up
 /*--------------------------------------*
  * layout // ヘッダー・メインのコンテンツエリア・サイドバー・フッターのスタイル
  *--------------------------------------*/
-/* ===================================================
-inner
-====================================================*/
-.inner {
-  max-width: 880px;
-  margin: 15px auto;
-}
-
-.inner__item {
-  max-width: 770px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
-/* ===================================================
-l-container
-====================================================*/
-.l-container {
-  max-width: 880px;
-  margin: 40px auto;
-  width: 100%;
-}
-@media screen and (max-width: 767.98px) {
-  .l-container {
-    padding: 0 15px;
-  }
-}
-
-/* ===================================================
-header
-====================================================*/
-.header #header {
-  position: relative;
-  z-index: 10;
-  height: 90px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header {
-    height: 70px;
-  }
-}
-.header #header h1 {
-  color: #000000;
-  font-size: 14px;
-}
-@media screen and (max-width: 767.98px) {
-  .header #header h1 {
-    font-size: 13px;
-  }
-}
-@media screen and (max-width: 369.98px) {
-  .header #header h1 {
-    font-size: 12px;
-  }
-}
-.header #header .ham__fixed, .header #header .logo__fixed {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 90px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham__fixed, .header #header .logo__fixed {
-    height: 70px;
-  }
-}
-.header #header .header__fixed {
-  position: fixed;
-  width: 100%;
-  height: 90px;
-  z-index: 20;
-  background-image: radial-gradient(circle at 0% 50%, rgb(246, 241, 228), rgb(241, 233, 212) 15%, rgb(221, 206, 156) 69%);
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .header__fixed {
-    height: 70px;
-  }
-}
-.header #header .ham {
-  position: absolute;
-  top: 10px;
-  right: 0;
-  z-index: 21;
-  border-radius: 10px;
-  transition: 0.3s ease;
-  cursor: pointer;
-  display: block;
-  border-radius: 9999px;
-  width: 70px;
-  height: 70px;
-}
-.header #header .ham:hover {
-  opacity: 0.7;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham {
-    right: 0;
-    top: 0;
-    width: 70px;
-    height: 70px;
-  }
-}
-.header #header .ham span {
-  background-color: #000000;
-  height: 2px;
-  position: absolute;
-  right: 19px;
-  width: 32px;
-  z-index: 9;
-  border-radius: 9999px;
-  transition: all 0.3s ease-in-out;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham span {
-    height: 2px;
-    width: 30px;
-    right: 15px;
-  }
-}
-.header #header .ham span:nth-child(1) {
-  top: 22px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham span:nth-child(1) {
-    top: 24px;
-  }
-}
-.header #header .ham span:nth-child(2) {
-  top: 34px;
-}
-.header #header .ham span:nth-child(3) {
-  top: 46px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham span:nth-child(3) {
-    top: 44px;
-  }
-}
-.header #header .globalMenu {
-  opacity: 100;
-  z-index: 9;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-  background-color: #000000;
-  width: 100%;
-  height: auto;
-  position: fixed;
-  visibility: visible;
-  top: 50px;
-  left: 0%;
-  color: #fff;
-  transition-duration: 0.6s;
-  padding: 0 15px 60px;
-  overflow-y: hidden;
-  transform: translate3d(0, -120%, 0);
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .globalMenu {
-    height: 100lvh;
-  }
-}
-.header #header .globalMenu.out {
-  animation: menuOut 0.8s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
-}
-@keyframes menuOut {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, -120%, 0);
-  }
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .globalMenu {
-    top: 40px;
-  }
-}
-.header #header .globalMenu ul {
-  text-align: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 34px;
-  margin-top: 95px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .globalMenu ul {
-    gap: 38px;
-    margin-top: 82px;
-  }
-}
-.header #header .globalMenu ul li {
-  opacity: 0;
-  transform: translate3d(0, 7rem, 0);
-  transition: 0.9s ease;
-}
-.header #header .globalMenu ul li a {
-  color: #fff;
-  letter-spacing: 0.025em;
-  font-size: 16px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .globalMenu ul li a {
-    font-size: 15px;
-  }
-}
-.header #header .globalMenu ul li a.nav-tour {
-  font-size: 24px;
-}
-@media screen and (max-width: 767.98px) {
-  .header #header .globalMenu ul li a.nav-tour {
-    font-size: clamp(1.25rem, 0.0572519084rem + 5.0890585242vw, 2.5rem);
-  }
-}
-.header #header .globalMenu ul li a.nav-tour {
-  font-weight: 600;
-}
-.header #header .globalMenu ul li p {
-  color: #ACACAC;
-}
-.header #header .logo__fixed {
-  color: #000000;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 29px;
-  z-index: 3;
-}
-@media screen and (max-width: 767.98px) {
-  .header #header .logo__fixed {
-    gap: 0;
-  }
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .logo__fixed a img {
-    margin-left: 15px;
-    max-width: 107px;
-  }
-}
-.header #header .logo__fixed p {
-  color: #000000;
-  font-size: 14px;
-}
-.header #header .globalMenu.active {
-  animation: menuActive 1s cubic-bezier(0.8, 0, 0.06, 0.9) forwards;
-  z-index: -1;
-}
-@keyframes menuActive {
-  0% {
-    transform: translate3d(0, -120%, 0);
-  }
-  60% {
-    transform: translate3d(0, 3%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-.header #header .globalMenu.active li {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: 0.2s;
-}
-.header #header .ham.active span {
-  transition: all 0.3s ease-in-out;
-  position: absolute;
-  top: 33px;
-  right: 23px;
-  width: 32px;
-}
-@media screen and (max-width: 768.98px) {
-  .header #header .ham.active span {
-    height: 2px;
-    width: 30px;
-    right: 15px;
-  }
-}
-.header #header .ham.active span:nth-child(1) {
-  transform: rotate(45deg);
-}
-.header #header .ham.active span:nth-child(2), .header #header .ham.active span:nth-child(3) {
-  transform: rotate(-45deg);
-}
-.header #header .for_sp {
-  display: inline-block;
-}
-@media screen and (min-width: 769px) {
-  .header #header .for_sp {
-    display: none;
-  }
-}
-.header #header .for_pc {
-  display: none;
-}
-@media screen and (min-width: 769px) {
-  .header #header .for_pc {
-    display: inline-block;
-  }
-}
-
-/* ===================================================
-footer
-====================================================*/
-footer {
+.portfolio {
+  min-height: 100vh;
   margin: 0;
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #f1ebd9;
+  background-image: linear-gradient(#e5dac1 2px, transparent 2px), linear-gradient(90deg, #e5dac1 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-repeat: repeat;
+  image-rendering: pixelated;
 }
 
 /*--------------------------------------*
  * object//　繰り返し使用されるビジュアルパターン
  *--------------------------------------*/
-/* ===================================================
-bg
-====================================================*/
-.portfolio-wrap {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 30px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-  /* ベースとなるアンティークベージュ */
-  background-color: #f1ebd9;
-  cursor: none; /* マウス矢換を消して杖にする */
-  /* 💡 境界線を 0 にして強制的にパキッと割ることで、確実に2pxの太い格子線を描きます */
-  background-image: linear-gradient(#e5dac1 2px, transparent 2px), linear-gradient(90deg, #e5dac1 2px, transparent 2px);
-  background-size: 40px 40px;
-  background-repeat: repeat;
-  font-family: "MS Gothic", monospace;
-  image-rendering: pixelated;
-}
-
-.win-window {
-  background-color: #fffaf0;
-  border: 4px solid #740001;
-  border-radius: 4px;
-  box-shadow: 6px 6px 0px 0px #ae0001;
-  padding: 4px;
-  width: 100%;
-  max-width: 550px;
-  box-sizing: border-box;
-  margin: 10vh auto 0;
-}
-
-.win-titlebar {
-  background-color: #740001;
-  color: #eeba30;
-  padding: 6px 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.win-buttons {
-  display: flex;
-  gap: 4px;
-}
-
-.win-btn {
-  background-color: #eeba30;
-  border: 2px solid #740001;
-  color: #740001;
-  font-size: 10px;
-  font-weight: bold;
-  padding: 0px 4px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: none;
-}
-
-.win-content {
-  margin-top: 4px;
-  padding: 20px;
-  color: #740001;
-  min-height: 200px;
-}
-
-.win-content h2 {
-  margin: 0 0 8px 0;
-  font-size: 24px;
-  color: #740001;
-  border-bottom: 2px dashed #ae0001;
-  padding-bottom: 8px;
-}
-
-.win-desc {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #2c1a04;
-}
-
-/* ===================================================
-📁 desktop-icons (手紙フォルダの配置とビット絵用設定)
-====================================================*/
-.desktop-icons {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px; /* ウィンドウの下に潜り込ませる */
-}
-
-.icon-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90px;
-  text-align: center;
-  cursor: none;
-}
-
-.folder-icon {
-  width: 55px;
-  height: auto;
-  image-rendering: pixelated;
-  transition: transform 0.1s ease;
-}
-
-.icon-item:hover .folder-icon {
-  transform: scale(1.1) rotate(3deg);
-}
-
-.icon-label {
-  margin-top: 8px;
-  font-size: 11px;
-  color: #740001;
-  font-weight: bold;
-  background-color: #fffaf0;
-  padding: 3px 8px;
-  border: 2px solid #740001;
-  border-radius: 3px;
-  box-shadow: 2px 2px 0px #dbcfb4;
-}
-
-/* ===================================================
-📄 works (実績ウィンドウ内のスクロール & ボタン装飾)
-====================================================*/
-.scroll-box {
-  max-height: 300px;
-  overflow-y: scroll;
-  border: 2px dashed #ae0001;
-  padding: 8px;
-  background-color: #fffdf9;
-}
-.scroll-box::-webkit-scrollbar {
-  width: 8px;
-}
-.scroll-box::-webkit-scrollbar-track {
-  background: #fffaf0;
-}
-.scroll-box::-webkit-scrollbar-thumb {
-  background: #740001;
-  border-radius: 2px;
-}
-
-.work-item-btn {
-  padding: 8px;
-  margin-bottom: 6px;
-  background-color: #fffaf0;
-  border: 2px solid #740001;
-  color: #740001;
-  font-weight: bold;
-  cursor: none;
-  font-size: 13px;
-  box-shadow: 2px 2px 0px #dbcfb4;
-  text-align: left;
-}
-
-.work-item-btn:hover {
-  background-color: #eeba30;
-  color: #740001;
-}
-
-.win-back-btn {
-  background-color: #fffaf0;
-  border: 2px solid #740001;
-  color: #740001;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: bold;
-  margin-bottom: 12px;
-  box-shadow: 2px 2px 0px #dbcfb4;
-  cursor: none;
-}
-
-.win-back-btn:hover {
-  background-color: #740001;
-  color: #eeba30;
-}
-
-/* ===================================================
-✨ magic-sparkle (クリック時の魔法が弾けて消えるエフェクト)
-====================================================*/
-.wand-soarkle {
-  animation: magic-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes magic-pop {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-    filter: drop-shadow(0 0 0px #fff);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.6);
-    opacity: 1;
-    filter: drop-shadow(0 0 8px #eeba30);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
-}
-/* ===================================================
-folder
-====================================================*/
-.folders .folder01 {
-  position: absolute;
-}
-
-/* ===================================================
-wand
-====================================================*/
-.magic-effect {
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-}
-
-.spark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #ffffff 0%, var(--magic-color) 40%, rgba(255, 255, 255, 0) 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: magicGlow 0.6s ease-out forwards;
-}
-
-.particle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--size);
-  height: var(--size);
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--magic-color), 0 0 10px var(--magic-color);
-  transform: translate(-50%, -50%);
-  animation: particleFly 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-.spell-text {
-  position: absolute;
-  top: -30px;
-  left: 0;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 0 0 8px var(--magic-color), 0 0 15px var(--magic-color), 0 0 30px var(--magic-color), 0 0 40px #000000;
-  opacity: 0;
-  animation: spellFade 1.2s ease-out forwards;
-  font-family: "Georgia", serif;
-}
-
-@keyframes magicGlow {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(6);
-    opacity: 0;
-  }
-}
-@keyframes particleFly {
-  0% {
-    transform: translate(-50%, -50%) translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0);
-    opacity: 0;
-  }
-}
-@keyframes spellFade {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 0) scale(0.8);
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -15px) scale(1.1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -40px) scale(1);
-  }
-}
 .ta-l {
   text-align: left !important;
 }
@@ -1759,31 +1163,108 @@ wand
   border-bottom: 0 !important;
 }
 
-/*--------------------------------------*
- * page ページ単位のスタイル セクション名などで分ける
- *--------------------------------------*/
 /* ===================================================
-top page
+folder-icons
 ====================================================*/
-.sample {
-  font-size: 16px;
+.folder-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
-@media screen and (max-width: 767.98px) {
-  .sample {
-    font-size: clamp(0.875rem, -0.1984732824rem + 4.5801526718vw, 2rem);
-  }
+.folder-icons a {
+  cursor: none;
 }
-
-.sample02 {
-  font-size: 16px;
-  margin-top: min(0.1333333333vw * 50, 50px);
+.folder-icons .icon-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-@media screen and (min-width: 768px) {
-  .sample02 {
-    margin-top: 25px;
-  }
+.folder-icons .icon-item img {
+  width: 300px;
 }
 
 /* ===================================================
-about page
-====================================================*//*# sourceMappingURL=style.css.map */
+wnad
+====================================================*/
+.magic-effect {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.spark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ffffff 0%, var(--magic-color) 40%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: magicGlow 0.6s ease-out forwards;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--magic-color), 0 0 10px var(--magic-color);
+  transform: translate(-50%, -50%);
+  animation: particleFly 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.spell-text {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 0 8px var(--magic-color), 0 0 15px var(--magic-color), 0 0 30px var(--magic-color), 0 0 40px #000000;
+  opacity: 0;
+  animation: spellFade 1.2s ease-out forwards;
+  font-family: "Georgia", serif;
+}
+
+@keyframes magicGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+@keyframes particleFly {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+@keyframes spellFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -15px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40px) scale(1);
+  }
+}/*# sourceMappingURL=style.css.map */

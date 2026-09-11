@@ -2,6 +2,19 @@
 @use "../foundation/mixins" as *;
 @use "../foundation/variables" as *;
  //mainタグ・sectionタグのスタイル
-// .main{
-// 		font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
-// }
+.portfolio{
+    min-height: 100vh;
+    // width: 100vw;
+    margin: 0;
+    position: relative;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #f1ebd9; 
+    background-image: 
+      linear-gradient(#e5dac1 2px, transparent 2px),
+      linear-gradient(90deg, #e5dac1 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+    image-rendering: pixelated;
+
+}

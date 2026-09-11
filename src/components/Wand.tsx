@@ -27,12 +27,11 @@ const spells = [
 ];
 
 const magicColors = [
-  "#00ffff",
-  "#00ffcc",
-  "#ff3399",
-  "#9933ff",
-  "#ffff33",
-  "#ff6600"
+  "#ffe066",
+  "#ffb300",
+  "#ff7600",
+  "#d4af37",
+  "#ff4d4d",
 ];
 
 function Wands() {
@@ -112,7 +111,7 @@ function Wands() {
             top: 0,
             left: 0,
             width: '50px',
-            transform: 'translate(-90%, -20%)',
+            transform: 'translate(-10%, -20%)',
             pointerEvents: 'none',
             zIndex: 9999,
             imageRendering: 'pixelated',

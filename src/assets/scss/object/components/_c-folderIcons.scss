@@ -1,12 +1,20 @@
 @use "../../foundation/breakpoints" as *;
 @use "../../foundation/mixins" as *;
 @use "../../foundation/variables" as *;
-
 /* ===================================================
-folder
+folder-icons
 ====================================================*/
-.folders{
-    .folder01{
-        position: absolute;
+.folder-icons{
+  @include fl(center,center);
+  gap: 50px;
+  a{
+    cursor: none;
+  }
+  .icon-item{
+    @include fl(center,center);
+    flex-direction: column;
+    img{
+      width: 300px;
     }
+  }
 }

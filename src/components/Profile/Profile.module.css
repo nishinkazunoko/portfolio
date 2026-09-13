@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* ===================================================
+profile
+====================================================*/
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 20px 200px;
+}
+
+.profile-imgs {
+  position: sticky;
+  top: 25vh;
+  width: 45%;
+  aspect-ratio: 4 / 3;
+}
+
+.profile-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: scale(0.96);
+  will-change: opacity, transform;
+}
+.profile-texts {
+  width: 50%;
+  padding-top: 40vh; 
+}
+
+.profile-text {
+  margin-bottom: 50vh;
+  opacity: 0.2;
+  color: #a0a0d0;
+  font-size: 16px;
+  line-height: 1.9;
+  transition: opacity 0.4s ease, color 0.4s ease, transform 0.4s ease;
+}
+
+.profile-text:last-child {
+  margin-bottom: 20vh;
+}
+
+.profile-text.active {
+  opacity: 1;
+  color: #000;
+  transform: translateX(8px);
+}

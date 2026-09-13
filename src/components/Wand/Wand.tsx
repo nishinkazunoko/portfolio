@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import wandImg from '../assets/images/wand.png'
-
+import wandImg from './images/wand.png'
+import styles from './Wand.module.css'
 interface ParticleData {
   tx: string;
   ty: string;
@@ -99,7 +99,7 @@ function Wands() {
 
   return (
     <>
-      <div className='wands'>
+      <div className={styles['wands']}>
         <img
           ref={wandRef}
           src={wandImg}
@@ -131,7 +131,7 @@ function Wands() {
           ['--magic-color' as any]: sparkle.color, 
         }}
       >
-        <div className="spark" />
+        <div className={styles['spark']} />
           {sparkle.particles.map((p, idx) => (
             <div
               key={idx}
@@ -144,7 +144,7 @@ function Wands() {
             />
           ))}
 
-          <div className="spell-text">
+          <div className={styles['spell-text']}>
             {sparkle.spell}
           </div>
         </div>

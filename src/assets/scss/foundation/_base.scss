@@ -23,7 +23,13 @@ html{
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
-	
+	position: relative;
+	.cinzel{
+		font-family: "Cinzel", serif;
+		font-optical-sizing: auto;
+		font-weight:700;
+		font-style: normal;
+	}
 }
 body{
 	margin: 0;
@@ -42,10 +48,11 @@ body{
 		touch-action: manipulation;
 		word-break: break-all;
 		transition: all .3s;
-		cursor: pointer!important;
+		color: #000;
 		&:hover{
 			position: relative;
 			z-index: 9999; 
+			opacity: 0.7;
 		}
 	}
 	li{

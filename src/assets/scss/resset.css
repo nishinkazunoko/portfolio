@@ -1,278 +1,584 @@
 @charset "UTF-8";
-/* resset.dev • v5.0.2 */
-/* # =================================================================
-   # Global selectors
-   # ================================================================= */
-html {
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
-  word-break: normal;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-     tab-size: 4;
+
+/* ===================================================
+   folders
+=================================================== */
+
+.folders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 60px;
+
+  flex-wrap: wrap;
+
+  max-width: 1100px;
+  width: 100%;
 }
 
-*,
-::before,
-::after {
-  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
-  box-sizing: inherit;
-}
 
-::before,
-::after {
-  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
-  vertical-align: inherit;
-}
+/* ===================================================
+   present-container
+=================================================== */
 
-* {
-  padding: 0; /* Reset `padding` and `margin` of all elements */
-  margin: 0;
-}
+.present-container {
+  width: 350px;
+  height: 450px;
 
-/* # =================================================================
-   # General elements
-   # ================================================================= */
-hr {
-  overflow: visible; /* Show the overflow in Edge and IE */
-  height: 0; /* Add the correct box sizing in Firefox */
-  color: inherit; /* Correct border color in Firefox. */
-}
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 
-details,
-main {
-  display: block; /* Render the `main` element consistently in IE. */
-}
+  cursor: pointer;
 
-summary {
-  display: list-item; /* Add the correct display in all browsers */
-}
+  padding-bottom: 30px;
 
-small {
-  font-size: 80%; /* Set font-size to 80% in `small` elements */
-}
-
-[hidden] {
-  display: none; /* Add the correct display in IE */
-}
-
-abbr[title] {
-  border-bottom: none; /* Remove the bottom border in Chrome 57 */
-  /* Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari */
-  text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
-}
-
-a {
-  background-color: transparent; /* Remove the gray background on active links in IE 10 */
-}
-
-a:active,
-a:hover {
-  outline-width: 0; /* Remove the outline when hovering in all browsers */
-}
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace; /* Specify the font family of code elements */
-}
-
-pre {
-  font-size: 1em; /* Correct the odd `em` font sizing in all browsers */
-}
-
-b,
-strong {
-  font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
-}
-
-/* https://gist.github.com/unruthless/413930 */
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
   position: relative;
-  vertical-align: baseline;
+  z-index: 1;
+
+  /*
+   * 最初は透明
+   */
+  opacity: 0;
+
+  /*
+   * 最初は画面のかなり上
+   */
+  transform: translateY(-100vh);
+
+  /*
+   * transformを使うアニメーションなので
+   * ブラウザに最適化してもらう
+   */
+  will-change: transform, opacity;
 }
 
-sub {
-  bottom: -0.25em;
+
+/* ===================================================
+   Loading終了後
+=================================================== */
+
+.present-container.isReady {
+  animation-name: folderDrop;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
 }
 
-sup {
-  top: -0.5em;
+
+/* ===================================================
+   Profile
+=================================================== */
+
+.present-container.col1.isReady {
+  animation-delay: 0s;
 }
 
-table {
-  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
-  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+
+/* ===================================================
+   Works
+=================================================== */
+
+.present-container.col2.isReady {
+  animation-delay: 0.25s;
 }
 
-iframe {
-  border-style: none;
+
+/* ===================================================
+   落下アニメーション
+=================================================== */
+
+@keyframes folderDrop {
+
+  /*
+   * スタート
+   * 画面上部
+   */
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+
+  /*
+   * 落下して着地
+   */
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+
+  /*
+   * 少し跳ねる
+   */
+  75% {
+    transform: translateY(-15px);
+  }
+
+  /*
+   * もう一度着地
+   */
+  88% {
+    transform: translateY(7px);
+  }
+
+  /*
+   * 最終位置
+   */
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* # =================================================================
-   # Forms
-   # ================================================================= */
-input {
-  border-radius: 0;
+
+/* ===================================================
+   responsive
+=================================================== */
+
+@media screen and (max-width: 767.98px) {
+
+  .present-container {
+    height: 300px;
+  }
+
 }
 
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
-  height: auto; /* Correct the cursor style of increment and decrement buttons in Chrome */
+
+/* ===================================================
+   present-box
+=================================================== */
+
+.present-box {
+  position: relative;
+
+  max-width: 300px;
+  width: 100%;
+
+  height: 280px;
 }
 
-[type=search] {
-  -webkit-appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
-  outline-offset: -2px; /* Correct the outline style in Safari */
+
+/* ===================================================
+   box-body
+=================================================== */
+
+.box-body {
+  position: absolute;
+
+  bottom: 0;
+
+  width: 100%;
+  height: 200px;
+
+  border-radius: 0 0 8px 8px;
+
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.12);
+
+  overflow: hidden;
+
+  z-index: 1;
 }
 
-[type=search]::-webkit-search-decoration {
-  -webkit-appearance: none; /* Remove the inner padding in Chrome and Safari on macOS */
+
+/* ===================================================
+   colors
+=================================================== */
+
+.present-container.col1 .box-body,
+.present-container.col1 .present-lid {
+  background: #e36b2d;
 }
 
-textarea {
-  overflow: auto; /* Internet Explorer 11+ */
-  resize: vertical; /* Specify textarea resizability */
+.present-container.col2 .box-body,
+.present-container.col2 .present-lid {
+  background: #4242d1;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  font: inherit; /* Specify font inheritance of form elements */
+
+/* ===================================================
+   present-lid
+=================================================== */
+
+.present-lid {
+  position: absolute;
+
+  top: 40px;
+  left: -5%;
+
+  width: 110%;
+  height: 50px;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1);
+
+  z-index: 2;
+
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-optgroup {
-  font-weight: bold; /* Restore the font weight unset by the previous rule */
+
+/* ===================================================
+   ribbon vertical
+=================================================== */
+
+.ribbon-vertical {
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 18px;
+  height: 100%;
+
+  background: #F4F1DE;
 }
 
-button {
-  overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+
+/* ===================================================
+   ribbon horizontal
+=================================================== */
+
+.ribbon-horizontal {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 100%;
+  height: 12px;
+
+  background: #F4F1DE;
 }
 
-button,
-select {
-  text-transform: none; /* Firefox 40+, Internet Explorer 11- */
+
+/* ===================================================
+   ribbon-wrapper
+=================================================== */
+
+.ribbon-wrapper {
+  position: absolute;
+
+  top: -22px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 50px;
+  height: 30px;
+
+  z-index: 5;
 }
 
-/* Apply cursor pointer to button elements */
-button,
-[type=button],
-[type=reset],
-[type=submit],
-[role=button] {
-  cursor: pointer;
+
+/* ===================================================
+   ribbon loops
+=================================================== */
+
+.loop-left,
+.loop-right {
+  position: absolute;
+
+  top: 2px;
+
+  width: 22px;
+  height: 20px;
+
+  border: 5px solid #8c3517;
+
+  border-radius: 50% 50% 40% 50%;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 3px rgba(255, 255, 255, 0.8);
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.2s ease;
 }
 
-/* Remove inner padding and border in Firefox 4+ */
-button::-moz-focus-inner,
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
+
+/* ===================================================
+   loop-left
+=================================================== */
+
+.loop-left {
+  left: 2px;
+
+  transform: rotate(-25deg);
 }
 
-/* Replace focus style removed in the border reset above */
-button:-moz-focusring,
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner {
-  outline: 1px dotted ButtonText;
+
+/* ===================================================
+   loop-right
+=================================================== */
+
+.loop-right {
+  right: 2px;
+
+  transform: scaleX(-1) rotate(-25deg);
 }
 
-button,
-html [type=button],
-[type=reset],
-[type=submit] {
-  -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+
+/* ===================================================
+   center-knot
+=================================================== */
+
+.center-knot {
+  position: absolute;
+
+  top: 10px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 14px;
+  height: 12px;
+
+  background: #EADFB4;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15);
+
+  z-index: 6;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
 }
 
-/* Remove the default button styling in all browsers */
-button,
-input,
-select,
-textarea {
-  background-color: transparent;
-  border-style: none;
+
+/* ===================================================
+   tails
+=================================================== */
+
+.tail-left,
+.tail-right {
+  position: absolute;
+
+  top: 18px;
+
+  width: 8px;
+  height: 18px;
+
+  background: #8c3517;
+
+  border-radius: 2px;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1);
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease;
 }
 
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline-width: 0;
+
+/* ===================================================
+   tail-left
+=================================================== */
+
+.tail-left {
+  left: 12px;
+
+  transform: rotate(20deg);
+
+  transform-origin: top center;
 }
 
-/* Style select like a standard input */
-select {
-  -moz-appearance: none; /* Firefox 36+ */
-  -webkit-appearance: none; /* Chrome 41+ */
+
+/* ===================================================
+   tail-right
+=================================================== */
+
+.tail-right {
+  right: 12px;
+
+  transform: rotate(-20deg);
+
+  transform-origin: top center;
 }
 
-select::-ms-expand {
-  display: none; /* Internet Explorer 11+ */
+
+/* ===================================================
+   present-content
+=================================================== */
+
+.present-content {
+  position: absolute;
+
+  top: 90px;
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    scale(0.5);
+
+  opacity: 0;
+
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  transition:
+    transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s,
+    opacity 0.3s ease 0.05s;
 }
 
-select::-ms-value {
-  color: currentColor; /* Internet Explorer 11+ */
+
+.present-content p {
+  font-size: 22px;
+
+  padding: 0 0.5em;
+
+  background-color: #fff;
 }
 
-legend {
-  border: 0; /* Correct `color` not being inherited in IE 8/9/10/11 */
-  color: inherit; /* Correct the color inheritance from `fieldset` elements in IE */
-  display: table; /* Correct the text wrapping in Edge and IE */
-  max-width: 100%; /* Correct the text wrapping in Edge and IE */
-  white-space: normal; /* Correct the text wrapping in Edge and IE */
-  max-width: 100%; /* Correct the text wrapping in Edge 18- and IE */
+
+/* ===================================================
+   pop-text
+=================================================== */
+
+.pop-text {
+  font-size: 14px;
+  font-weight: bold;
+
+  color: #768A75;
+
+  background: #FFFFFF;
+
+  padding: 5px 14px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+
+  white-space: nowrap;
 }
 
-::-webkit-file-upload-button {
-  /* Correct the inability to style clickable types in iOS and Safari */
-  -webkit-appearance: button;
-  color: inherit;
-  font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
+
+/* ===================================================
+   hover
+=================================================== */
+
+
+/*
+ * リボン中央
+ */
+
+.present-container:hover .center-knot {
+  transform:
+    translateX(-50%)
+    scale(0.6);
+
+  opacity: 0.5;
 }
 
-/* Replace pointer cursor in disabled elements */
-[disabled] {
-  cursor: default;
+
+/*
+ * テキスト
+ */
+
+.present-container:hover .present-content p {
+  text-decoration: underline;
 }
 
-/* # =================================================================
-   # Specify media element style
-   # ================================================================= */
-img {
-  border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
+
+/*
+ * 左のリボン
+ */
+
+.present-container:hover .tail-left {
+  transform:
+    rotate(45deg)
+    translateY(2px);
 }
 
-/* Add the correct vertical alignment in Chrome, Firefox, and Opera */
-progress {
-  vertical-align: baseline;
+
+/*
+ * 右のリボン
+ */
+
+.present-container:hover .tail-right {
+  transform:
+    rotate(-45deg)
+    translateY(2px);
 }
 
-/* # =================================================================
-   # Accessibility
-   # ================================================================= */
-/* Specify the progress cursor of updating elements */
-[aria-busy=true] {
-  cursor: progress;
+
+/*
+ * Profileの蓋
+ */
+
+.present-container:hover .present-lid {
+  transform:
+    translateY(-100px)
+    rotate(-15deg);
 }
 
-/* Specify the pointer cursor of trigger elements */
-[aria-controls] {
-  cursor: pointer;
+
+/*
+ * Worksの蓋
+ */
+
+.present-container.col2:hover .present-lid {
+  transform:
+    translateY(-100px)
+    rotate(15deg);
 }
 
-/* Specify the unstyled cursor of disabled, not-editable, or otherwise inoperable elements */
-[aria-disabled=true] {
-  cursor: default;
-}/*# sourceMappingURL=resset.css.map */
+
+/*
+ * 中身
+ */
+
+.present-container:hover .present-content {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(-75px)
+    scale(1);
+}
+
+
+/* ===================================================
+   reduced motion
+=================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .present-container.isReady {
+    animation: none;
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+  .present-lid,
+  .loop-left,
+  .loop-right,
+  .center-knot,
+  .tail-left,
+  .tail-right,
+  .present-content {
+    transition: none;
+  }
+
+}

@@ -4,11 +4,18 @@
 folder-icons
 ====================================================*/
 .folders{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 60px;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   max-width: 1100px;
   width: 100%;
 
@@ -17,17 +24,56 @@ folder-icons
 .present-container {
   width: 350px;
   height: 450px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   cursor: pointer;
   padding-bottom: 30px;
+  z-index: 1;
+  opacity: 0;
+  position: relative;
+  will-change: transform, opacity;
+  animation:toBottom 2s ease 4s forwards;
 }
 @media screen and (max-width: 767.98px){
   .present-container {
     height: 300px;
   }
 }
+@keyframes toBottom {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(20px);
+  }
+
+  82% {
+    transform: translateY(-12px);
+  }
+
+  91% {
+    transform: translateY(6px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 
 .present-box {
   position: relative;
@@ -43,7 +89,8 @@ folder-icons
   height: 200px;
   /* background: #E07A5F; */
   border-radius: 0 0 8px 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   z-index: 1;
 }
@@ -55,9 +102,14 @@ folder-icons
   height: 50px;
   /* background: #EE8A70; */
   border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 2;
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -o-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .present-container.col1{
   .box-body,.present-lid{
@@ -74,7 +126,9 @@ folder-icons
 .ribbon-vertical {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 18px;
   height: 100%;
   background: #F4F1DE;
@@ -83,7 +137,9 @@ folder-icons
 .ribbon-horizontal {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
   width: 100%;
   height: 12px;
   background: #F4F1DE;
@@ -93,7 +149,9 @@ folder-icons
   position: absolute;
   top: -22px;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 50px;
   height: 30px;
   z-index: 5;
@@ -106,33 +164,50 @@ folder-icons
   height: 20px;
   border: 5px solid #8c3517;
   border-radius: 50% 50% 40% 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 2px 3px rgba(255, 255, 255, 0.8);
-  box-sizing: border-box;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: opacity 0.2s ease, -webkit-transform 0.35s ease;
+  transition: opacity 0.2s ease, -webkit-transform 0.35s ease;
+  -o-transition: transform 0.35s ease, opacity 0.2s ease;
   transition: transform 0.35s ease, opacity 0.2s ease;
+  transition: transform 0.35s ease, opacity 0.2s ease, -webkit-transform 0.35s ease;
 }
 
 .loop-left {
   left: 2px;
-  transform: rotate(-25deg);
+  -webkit-transform: rotate(-25deg);
+      -ms-transform: rotate(-25deg);
+          transform: rotate(-25deg);
 }
 
 .loop-right {
   right: 2px;
-  transform: scaleX(-1) rotate(-25deg);
+  -webkit-transform: scaleX(-1) rotate(-25deg);
+      -ms-transform: scaleX(-1) rotate(-25deg);
+          transform: scaleX(-1) rotate(-25deg);
 }
 
 .center-knot {
   position: absolute;
   top: 10px;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 14px;
   height: 12px;
   background: #EADFB4;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   z-index: 6;
+  -webkit-transition: opacity 0.2s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.2s ease, -webkit-transform 0.3s ease;
+  -o-transition: transform 0.3s ease, opacity 0.2s ease;
   transition: transform 0.3s ease, opacity 0.2s ease;
+  transition: transform 0.3s ease, opacity 0.2s ease, -webkit-transform 0.3s ease;
 }
 
 .tail-left, .tail-right {
@@ -142,33 +217,59 @@ folder-icons
   height: 18px;
   background: #8c3517;
   border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.4s ease;
+  transition: opacity 0.3s ease, -webkit-transform 0.4s ease;
+  -o-transition: transform 0.4s ease, opacity 0.3s ease;
   transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.3s ease, -webkit-transform 0.4s ease;
 }
 
 .tail-left {
   left: 12px;
-  transform: rotate(20deg);
-  transform-origin: top center;
+  -webkit-transform: rotate(20deg);
+      -ms-transform: rotate(20deg);
+          transform: rotate(20deg);
+  -webkit-transform-origin: top center;
+      -ms-transform-origin: top center;
+          transform-origin: top center;
 }
 
 .tail-right {
   right: 12px;
-  transform: rotate(-20deg);
-  transform-origin: top center;
+  -webkit-transform: rotate(-20deg);
+      -ms-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+  -webkit-transform-origin: top center;
+      -ms-transform-origin: top center;
+          transform-origin: top center;
 }
 
 .present-content {
   position: absolute;
   top: 90px;
   left: 50%;
-  transform: translateX(-50%) scale(0.5);
+  -webkit-transform: translateX(-50%) scale(0.5);
+      -ms-transform: translateX(-50%) scale(0.5);
+          transform: translateX(-50%) scale(0.5);
   opacity: 0;
   z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: opacity 0.3s ease 0.05s, -webkit-transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s;
+  transition: opacity 0.3s ease 0.05s, -webkit-transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s;
+  -o-transition: transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s, opacity 0.3s ease 0.05s;
   transition: transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s, opacity 0.3s ease 0.05s;
+  transition: transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s, opacity 0.3s ease 0.05s, -webkit-transform 1.05s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.05s;
   width: 100%;
   p{
     font-size: 22px;
@@ -185,7 +286,8 @@ folder-icons
   background: #FFFFFF;
   padding: 5px 14px;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   white-space: nowrap;
 }
 
@@ -202,27 +304,39 @@ folder-icons
   opacity: 0.3;
 } */
 .present-container:hover .center-knot {
-  transform: translateX(-50%) scale(0.6);
+  -webkit-transform: translateX(-50%) scale(0.6);
+      -ms-transform: translateX(-50%) scale(0.6);
+          transform: translateX(-50%) scale(0.6);
   opacity: 0.5;
 }
 .present-container:hover a{
   text-decoration: underline;
 }
 .present-container:hover .tail-left {
-  transform: rotate(45deg) translateY(2px);
+  -webkit-transform: rotate(45deg) translateY(2px);
+      -ms-transform: rotate(45deg) translateY(2px);
+          transform: rotate(45deg) translateY(2px);
 }
 .present-container:hover .tail-right {
-  transform: rotate(-45deg) translateY(2px);
+  -webkit-transform: rotate(-45deg) translateY(2px);
+      -ms-transform: rotate(-45deg) translateY(2px);
+          transform: rotate(-45deg) translateY(2px);
 }
 
 .present-container:hover .present-lid {
-  transform: translateY(-100px) rotate(-15deg);
+  -webkit-transform: translateY(-100px) rotate(-15deg);
+      -ms-transform: translateY(-100px) rotate(-15deg);
+          transform: translateY(-100px) rotate(-15deg);
 }
 
 .present-container.col2:hover .present-lid{
-  transform: translateY(-100px) rotate(15deg);
+  -webkit-transform: translateY(-100px) rotate(15deg);
+      -ms-transform: translateY(-100px) rotate(15deg);
+          transform: translateY(-100px) rotate(15deg);
 }
 .present-container:hover .present-content {
   opacity: 1;
-  transform: translateX(-50%) translateY(-75px) scale(1);
+  -webkit-transform: translateX(-50%) translateY(-75px) scale(1);
+      -ms-transform: translateX(-50%) translateY(-75px) scale(1);
+          transform: translateX(-50%) translateY(-75px) scale(1);
 }

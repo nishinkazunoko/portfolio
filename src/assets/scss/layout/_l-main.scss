@@ -10,6 +10,8 @@
     padding: 90px 30px 30px;
     box-sizing: border-box;
     background-color: #f6f0e4;
+    filter: blur(10px);
+    animation: noBlur 2s ease-in-out forwards;
     // background-image: 
     //   radial-gradient(#e07a5f 1px, transparent 1px),
     //   radial-gradient(#768a75 1px, transparent 1px),
@@ -18,4 +20,9 @@
     // background-position: 0 0, 25px 25px, 0 0;
     // background-attachment: fixed;
 
+}
+@keyframes noBlur {
+  to{
+    filter: blur(0px);
+  }
 }

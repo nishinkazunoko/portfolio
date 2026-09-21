@@ -2,6 +2,7 @@ import { Routes , Route } from 'react-router-dom'
 import { useState } from 'react'
 import './assets/scss/resset.css'
 import './assets/scss/style.css'
+import Loading from './components/Loading/Loading'
 import Folders from './components/Folder/Folder'
 import WorksList from './components/Works/WorksList'
 import Profile from './components/Profile/Profile'
@@ -13,6 +14,7 @@ function App() {
   
   return (
     <>
+    <Loading />
     <Header />
     <main className="portfolio">
       

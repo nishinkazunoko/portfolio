@@ -6,7 +6,8 @@
 共通項目
 ====================================================*/
 *, *::before, *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html {
@@ -39,8 +40,10 @@ body p, body h1, body h2, body h3, body h4, body ul, body li {
 body a, body button {
   text-decoration: none;
   display: block;
-  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
   word-break: break-all;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   color: #000;
 }
@@ -85,7 +88,23 @@ body img {
 }
 
 .trigger.in.is-active {
-  animation: fadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+  -webkit-animation: fadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+          animation: fadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
@@ -106,16 +125,34 @@ body img {
 js-trigger up
 ===============*/
 .trigger.up.is-active {
-  animation: slideUp 2s 0.3s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+  -webkit-animation: slideUp 2s 0.3s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+          animation: slideUp 2s 0.3s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(180px);
+            transform: translateY(180px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  40%, 100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
   0% {
-    transform: translateY(180px);
+    -webkit-transform: translateY(180px);
+            transform: translateY(180px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   40%, 100% {
     opacity: 1;
@@ -128,15 +165,26 @@ js-trigger up
   margin: 0;
   position: relative;
   padding: 90px 30px 30px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #f6f0e4;
-  filter: blur(10px);
-  animation: noBlur 2s ease-in-out forwards;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  -webkit-animation: noBlur 2s ease-in-out forwards;
+          animation: noBlur 2s ease-in-out forwards;
+}
+
+@-webkit-keyframes noBlur {
+  to {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
 }
 
 @keyframes noBlur {
   to {
-    filter: blur(0px);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
   }
 }
 /*--------------------------------------*

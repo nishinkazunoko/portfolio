@@ -2,22 +2,90 @@
 
 /* ===================================================
 profile
-====================================================*/
+====================================================　*/
+.profile{
+  overflow-x: hidden;
+}
 .profile__cards{
   display: grid;
   grid-template-columns: 30% 30% 30%;
   justify-content: space-between;
-  li{
-    .profile__front{
-      img{
-        border-radius: 10px;
-      }
-    }
-  }
-  .profile__hdg{
-    font-family: "Cinzel", serif;
-    font-optical-sizing: auto;
-    font-weight:700;
-    font-style: normal;
+}
+.profile__card{
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+  overflow: hidden;
+  height: 490px;
+  border-radius: 10px;
+}
+.career__text{
+  color: #d8bf9f;
+  font-size: 14px;
+  padding: 0 10px;
+}
+.is-clicked {
+  z-index: 30;
+}
+
+.profile__front,
+.profile__back {
+  backface-visibility: hidden;
+}
+
+/* カードの前面 */
+.profile__front{
+  position: relative;
+  z-index: 3;
+  img{
+    border-radius: 10px;
   }
 }
+
+/* カードの背面 */
+.profile__back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+  transition:transform 0.8s ease, opacity 0.3s ease;
+}
+
+.profile__black {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #000;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition:width 0.8s ease, height 0.8s ease;
+  pointer-events: none;
+}
+.profile__card.is-clicked {
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #000;
+}
+.profile__card.is-clicked .profile__front {
+  transform: rotateY(180deg);
+}
+.profile__card.is-clicked .profile__black {
+  width: 150vw;
+  height: 150vh;
+}
+.profile__card.is-clicked .profile__back {
+  z-index: 10;
+  opacity: 1;
+  transform: rotateY(0);
+}
+
+
+
+

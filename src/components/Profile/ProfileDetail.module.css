@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* ===================================================
+profile詳細ページ
+====================================================　*/
+.detailContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.mainContent {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #d8bf9f;
+}
+
+/* レイアウトエリア：画像がある時は横並び、無い時は自動的にテキストが広がる */
+.contentBody {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 30px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; /* スマホ表示用 */
+}
+
+/* 画像ラッパー */
+.imageWrapper {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 300px;
+          flex: 0 0 300px; /* 画像の幅を固定 */
+}
+
+.profileImg {
+  width: 100%;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* テキストラッパー：残りの領域いっぱいに広がる */
+.textsWrapper {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 280px;
+}
+
+.textBlock {
+  margin-bottom: 24px;
+}
+
+.heading {
+  font-size: 16px;
+  color: #d8bf9f;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.bodyText {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 下部ナビゲーションエリア等のCSSは前述と同様 */

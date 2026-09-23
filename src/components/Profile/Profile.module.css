@@ -5,19 +5,28 @@ profile
 ====================================================　*/
 .profile{
   overflow-x: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
 }
 .profile__cards{
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  justify-content: space-between;
+  grid-template-columns: repeat(3, 30%);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .profile__card{
   position: relative;
   cursor: pointer;
-  perspective: 1000px;
-  overflow: hidden;
-  height: 490px;
+  /* height: 490px; */
   border-radius: 10px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: opacity 0.8s ease, -webkit-transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s ease, -webkit-transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease, -webkit-transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .career__text{
   color: #d8bf9f;
@@ -30,7 +39,8 @@ profile
 
 .profile__front,
 .profile__back {
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 /* カードの前面 */
@@ -38,6 +48,7 @@ profile
   position: relative;
   z-index: 3;
   img{
+    width: 100%;
     border-radius: 10px;
   }
 }
@@ -51,9 +62,15 @@ profile
   height: 100%;
   z-index: 1;
   opacity: 0;
-  transform: rotateY(-180deg);
-  backface-visibility: hidden;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition:opacity 0.3s ease, -webkit-transform 0.8s ease;
+  transition:opacity 0.3s ease, -webkit-transform 0.8s ease;
+  -o-transition:transform 0.8s ease, opacity 0.3s ease;
   transition:transform 0.8s ease, opacity 0.3s ease;
+  transition:transform 0.8s ease, opacity 0.3s ease, -webkit-transform 0.8s ease;
 }
 
 .profile__black {
@@ -63,29 +80,21 @@ profile
   width: 0;
   height: 0;
   background-color: #000;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 10;
+  -webkit-transition:width 0.8s ease, height 0.8s ease;
+  -o-transition:width 0.8s ease, height 0.8s ease;
   transition:width 0.8s ease, height 0.8s ease;
   pointer-events: none;
 }
-.profile__card.is-clicked {
-  overflow-x: hidden;
-  overflow-y: auto;
-  background-color: #000;
+.profile__card.is-rotating {
+  -webkit-transform: rotateY(1080deg) scale(0.8);
+          transform: rotateY(1080deg) scale(0.8);
+  opacity: 0.3;
 }
 .profile__card.is-clicked .profile__front {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
-.profile__card.is-clicked .profile__black {
-  width: 150vw;
-  height: 150vh;
-}
-.profile__card.is-clicked .profile__back {
-  z-index: 10;
-  opacity: 1;
-  transform: rotateY(0);
-}
-
-
-
-

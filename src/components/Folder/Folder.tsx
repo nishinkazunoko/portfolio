@@ -1,12 +1,15 @@
+import {useState} from 'react';
 import { Link } from 'react-router-dom';
-
 import styles from './Folder.module.css';
-
 import confetti from 'canvas-confetti';
-
 import MagicWorldEnter from '../MaigicWorld/MagicWorld-enter';
 
 function Folders() {
+  // 初回かどうかの判定
+  const [isFirstVisit] = useState(() => {
+    return !sessionStorage.getItem('hasVisitedLoading');
+  });
+
   const triggerMagicConfetti = (
     e: React.MouseEvent<HTMLDivElement>
   ) => {
@@ -38,7 +41,7 @@ function Folders() {
           Folders
       ========================= */}
 
-      <div className={styles.folders}>
+      <div className={`${styles.folders} ${isFirstVisit ? styles['firstVisit'] : ''}`}>
         {/* Profile */}
         <Link
           to="/profile/"

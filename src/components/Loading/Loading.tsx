@@ -1,15 +1,19 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import styles from './Loading.module.css';
 
 function Loading() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    const hasVisited = sessionStorage.getItem('hasVisitedLoading');
+    return !hasVisited; 
+  });
 
-  const handleAnimationEnd = (
-    e: React.AnimationEvent<HTMLDivElement>
-  ) => {
+
+  const handleAnimationEnd = (e: React.AnimationEvent<HTMLDivElement>) => {
+    // 最後に実行される curtainUp アニメーションが終わった時だけ非表示にする
     if (e.animationName.includes('curtainUp')) {
       setLoading(false);
+      sessionStorage.setItem('hasVisitedLoading', 'true');
     }
   };
 

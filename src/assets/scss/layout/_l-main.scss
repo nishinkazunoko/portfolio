@@ -8,10 +8,13 @@
     margin: 0;
     position: relative;
     padding: 90px 30px 30px;
-    box-sizing: border-box;
-    background-color: #f6f0e4;
-    filter: blur(10px);
-    animation: noBlur 2s ease-in-out forwards;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    // background-color: #f6f0e4;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    -webkit-animation: noBlur 2s ease-in-out forwards;
+            animation: noBlur 2s ease-in-out forwards;
     // background-image: 
     //   radial-gradient(#e07a5f 1px, transparent 1px),
     //   radial-gradient(#768a75 1px, transparent 1px),
@@ -21,8 +24,15 @@
     // background-attachment: fixed;
 
 }
+@-webkit-keyframes noBlur {
+  to{
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
 @keyframes noBlur {
   to{
-    filter: blur(0px);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
   }
 }

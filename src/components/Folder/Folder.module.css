@@ -18,7 +18,7 @@ folder-icons
       flex-wrap: wrap;
   max-width: 1100px;
   width: 100%;
-
+  margin: 0 auto;
 }
 
 .present-container {
@@ -39,16 +39,27 @@ folder-icons
   opacity: 0;
   position: relative;
   will-change: transform, opacity;
-  animation:toBottom 2s ease 4s forwards;
+  -webkit-animation:toBottom 2s ease 0s forwards;
+          animation:toBottom 2s ease 0s forwards;
 }
 @media screen and (max-width: 767.98px){
   .present-container {
     height: 300px;
   }
 }
-@keyframes toBottom {
+
+
+/* 初回の挙動 */
+.folders.firstVisit{
+  .present-container{
+    -webkit-animation:toBottom 2s ease 4s forwards;
+    animation:toBottom 2s ease 4s forwards;
+  }
+}
+@-webkit-keyframes toBottom {
   0% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
     opacity: 0;
   }
 
@@ -57,24 +68,58 @@ folder-icons
   }
 
   70% {
-    transform: translateY(20px);
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
   }
 
   82% {
-    transform: translateY(-12px);
+    -webkit-transform: translateY(-12px);
+            transform: translateY(-12px);
   }
 
   91% {
-    transform: translateY(6px);
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px);
   }
 
   100% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
     opacity: 1;
   }
 }
+@keyframes toBottom {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+    opacity: 0;
+  }
 
+  1% {
+    opacity: 1;
+  }
 
+  70% {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+
+  82% {
+    -webkit-transform: translateY(-12px);
+            transform: translateY(-12px);
+  }
+
+  91% {
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
 .present-box {
   position: relative;
   max-width: 300px;

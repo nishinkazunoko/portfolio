@@ -34,7 +34,7 @@ function Works() {
           <p>{work.result}</p>
 
 
-          <Link to="/works/">一覧へ</Link>
+          <Link to="/works/" className={styles['toWorkList']}>一覧へ</Link>
     </section>
 
     </>

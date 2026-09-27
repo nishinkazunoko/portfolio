@@ -3,7 +3,6 @@ import profileImg01 from './images/profile01.jpg'; // CAREER用画像
 import cargImg01 from './images/card01.png';
 import cargImg02 from './images/card02.png';
 import cargImg03 from './images/card03.png';
-import type { CardType } from './ProfileDetail';
 
 export type CardType = 'CAREER' | 'SKILLS' | 'HOBBY';
 

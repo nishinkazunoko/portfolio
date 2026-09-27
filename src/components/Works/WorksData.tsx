@@ -36,9 +36,9 @@ export const worksData :WorkItem[] =[
   },
   {
     id: 2, 
-    title: '先発医薬品の選定療養 差額算定ツールの開発 GASを活用したデータ軽量化と、業務効率を高める高速表示の実装', 
+    title: '愛知県の今の天候がわかるReactアプリ（個人開発）', 
     inCharge:' システム設計・データ構造最適化・フロントエンド実装',
-    skills:'HTML5, CSS, JavaScript, JSON, GAS',
+    skills:'React-ts, CSS',
     task:'2024年10月の医療制度改定（後発医薬品が存在する先発医薬品を希望した際の特別料金導入）に伴い、患者への説明や現場での事前計算を円滑に行うための算定ツールの開発を担当。業務フローを止めない迅速な表示と正確性が求められました。約1,000件規模に及ぶ医薬品・価格データの保持管理において、非エンジニアの運用担当者が更新しやすく、かつブラウザ上で遅延なく高速表示・検索できるデータ構造と連携フローの構築を課題として設定しました。',
     workOn: [
       '・運用コストを抑えるマスターデータ設計： 現場のステークホルダーが日常的に扱いやすいGoogleスプレッドシートをデータ管理基盤として採用。',
@@ -47,11 +47,11 @@ export const worksData :WorkItem[] =[
     result: '不要なデータを削ぎ落とした結果、初期ロード時の通信量と描画パフォーマンスが大幅に改善。実務現場（調剤・受付業務等）においてストレスなく瞬時に検索・計算ができる高ユーザビリティなシステムを提供しました。', 
     img:workImg02,
     mockImg:mockImg02,
-    link:'',
+    link:'https://moving-budget-dusky.vercel.app/',
   },
   {
     id: 3, 
-    title: '先発医薬品の選定療養 差額算定ツールの開発 GASを活用したデータ軽量化と、業務効率を高める高速表示の実装', 
+    title: '豊橋市の', 
     inCharge:' 要件定義・UI/UXデザイン・フロントエンド開発・構造化データ設計/SEO実装（個人制作 / 制作許可取得済み）',
     skills:'HTML5, PHP, CSS, JavaScript,JSON-LD',
     task:'大手フォトスタジオや競合カメラマンが多数存在する「豊橋エリア」において、有料広告に過度に頼ることなく、「豊橋 ニューボーンフォト」などの重要地域キーワードで検索結果の上位を獲得し、安定した直接Web予約（問い合わせ）へつなげる集客構造を構築することが課題でした。',
@@ -66,7 +66,7 @@ export const worksData :WorkItem[] =[
   },
   {
     id: 4, 
-    title: '先発医薬品の選定療養 差額算定ツールの開発 GASを活用したデータ軽量化と、業務効率を高める高速表示の実装', 
+    title: '更新もしやすい静的サイト', 
     inCharge:' 要件定義・UI/UXデザイン・フロントエンド開発・構造化データ設計/SEO実装（個人制作 / 制作許可取得済み）',
     skills:', Cursor (Vibe Coding), Node.js, JavaScript',
     task:'Webサイトの表示速度向上（Core Web Vitals対策）において次世代画像（WebP / AVIF）への変換は必須である一方、既存ツールではフォルダ構造を保った一括変換が手間であり、「欲しいツールをアイデア段階からアイデアのスピードのまま即座に形にしたい」という欲求があったこと。',
@@ -77,6 +77,21 @@ export const worksData :WorkItem[] =[
     result: 'アイデアから実装・公開までの開発スピードを劇的に短縮し、日常の画像軽量化作業を完全に自動化。制作現場における画像最適化の工数を大幅削減し、WebサイトのCore Web Vitals（表示速度パフォーマンス）向上に貢献。', 
     img:workImg04,
     mockImg:'',
-    link:'https://github.com/nishinkazunoko/webp-avif-converter',
+    link:'https://nishinkazunoko.github.io/perth/',
+  },
+  {
+    id: 5, 
+    title: '今後も拡張していく予定のポータルサイト', 
+    inCharge:' 要件定義・UI/UXデザイン・フロントエンド開発・構造化データ設計/SEO実装（個人制作 / 制作許可取得済み）',
+    skills:', Cursor (Vibe Coding), Node.js, JavaScript',
+    task:'Webサイトの表示速度向上（Core Web Vitals対策）において次世代画像（WebP / AVIF）への変換は必須である一方、既存ツールではフォルダ構造を保った一括変換が手間であり、「欲しいツールをアイデア段階からアイデアのスピードのまま即座に形にしたい」という欲求があったこと。',
+    workOn: [
+      '・Cursorを活用したVibe Coding（AI協調開発）： AIコードエディタ Cursor との対話を重ね、自然言語による指示とフィードバックのサイクル（Vibe Coding）によってアイデアから爆速でツールを組み上げ。',
+      '・一括変換パイプラインの実装： 高速画像処理ライブラリ（Sharp等）をベースに、指定ディレクトリ内の画像をフォルダ構造を維持したまままとめてWebP / AVIFへ相互変換・自動圧縮する処理を効率的に実装。'
+    ],
+    result: 'アイデアから実装・公開までの開発スピードを劇的に短縮し、日常の画像軽量化作業を完全に自動化。制作現場における画像最適化の工数を大幅削減し、WebサイトのCore Web Vitals（表示速度パフォーマンス）向上に貢献。', 
+    img:workImg04,
+    mockImg:'',
+    link:'https://tutor-prodigy.com',
   },
 ]

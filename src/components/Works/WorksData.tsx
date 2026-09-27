@@ -2,6 +2,7 @@ import workImg01 from './images/1.webp'
 import workImg02 from './images/2.webp'
 import workImg03 from './images/3.webp'
 import workImg04 from './images/4.webp'
+import workImg05 from './images/5.webp'
 import mockImg01 from './images/mock01.jpg'
 import mockImg02 from './images/mock02.jpg'
 import mockImg03 from './images/mock03.jpg'
@@ -89,10 +90,10 @@ export const worksData :WorkItem[] =[
     task:'信頼感が求められる家庭教師のプロフィール紹介に加え、将来的なブログ運用やコンテンツ追加を見据えた拡張性の高いWEB基盤の構築が課題でした。あわせて、ターゲット層（保護者・生徒）へ確実にアプローチできるよう、検索エンジンに評価されやすいSEO内部対策の徹底を目指しました。',
     workOn: [
       '・将来の拡張性を見越したWordPress構造設計： 今後のブログ展開や記事・お知らせ投稿をスムーズに行えるよう、カスタム投稿タイプやカテゴリー設計を最適化。',
-      '・SEO内部対策とセマンティックなマークアップ： 適切なHTML構造化、メタタグの最適化、表示速度を意識した軽量なコーディングにより、検索エンジンへの最適化を徹底。'
+      '・SEO内部対策とセマンティックなマークアップ： 適切なHTML構造化、メタタグの最適化、表示速度を意識した軽量なコーディングにより、検索エンジンへの最適化を徹底。また、口コミを掲載することでCV率アップに貢献しました。'
     ],
     result: 'コンテンツの追加・管理が容易なCMS環境を構築し、今後の運用拡張に対応できるサイト基盤を完成させました。また、徹底したSEO対策により検索視認性を高め、集客・ブランディングに寄与するWEBサイトを実現しました。', 
-    img:workImg04,
+    img:workImg05,
     mockImg:mockImg05,
     link:'https://tutor-prodigy.com',
   },

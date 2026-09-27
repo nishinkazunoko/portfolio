@@ -10,7 +10,10 @@
     padding: 90px 30px 30px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-background-color: #fff;
+    background-color: #fff;
+    @include mq(sm){
+        padding: 70px 15px 30px;
+    }
     // background-color: #f6f0e4;
 //     -webkit-filter: blur(10px);
 //             filter: blur(10px);

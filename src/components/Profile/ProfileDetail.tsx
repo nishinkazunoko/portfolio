@@ -26,7 +26,7 @@ interface SectionDetail {
 const DETAIL_DATA: Record<CardType, SectionDetail> = {
   CAREER: {
     title: 'CAREER',
-    image: profileImg01, // CAREERのみ画像をセット
+    image: profileImg01,
     texts: [
       {
         heading: '2019年 〜 医療法人るぷてぃらぱん（医療事務・広報）',
@@ -44,7 +44,6 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
   },
   SKILLS: {
     title: 'SKILLS',
-    // image は指定しない（画像なし）
     texts: [
       {
         heading: 'HTML / CSS / Sass / JavaScript',
@@ -68,7 +67,6 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
   },
 };
 
-// サムネイルカード用のデータ
 const CARD_THUMBNAILS: Record<CardType, { title: string; img: string }> = {
   CAREER: { title: 'CAREER', img: cargImg01 },
   SKILLS: { title: 'SKILLS', img: cargImg02 },
@@ -78,19 +76,16 @@ const CARD_THUMBNAILS: Record<CardType, { title: string; img: string }> = {
 export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: ProfileDetailProps) {
   const currentData = DETAIL_DATA[activeType];
 
-  // 表示中以外の2つのタイプを抽出
   const otherTypes = (['CAREER', 'SKILLS', 'HOBBY'] as CardType[]).filter(
     (type) => type !== activeType
   );
 
   return (
     <div className={styles.detailContainer}>
-      {/* メイン詳細エリア */}
       <section className={styles.mainContent}>
         <h2 className={styles.title}>{currentData.title}</h2>
 
         <div className={styles.contentBody}>
-          {/* ★ 画像が存在する場合のみ表示する（オプショナルレンダリング） */}
           {currentData.image && (
             <div className={styles.imageWrapper}>
               <img
@@ -101,7 +96,6 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
             </div>
           )}
 
-          {/* テキスト表示部分（共通フォーマット） */}
           <div className={styles.textsWrapper}>
             {currentData.texts.map((item, index) => (
               <div key={index} className={styles.textBlock}>
@@ -113,9 +107,8 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
         </div>
       </section>
 
-      {/* 下部の他の2枚のカード */}
       <nav className={styles.otherCardsSection}>
-        <p className={styles.subTitle}>OTHER CARDS</p>
+        {/* <p className={styles.subTitle}>OTHER CARDS</p> */}
         <div className={styles.otherCardsGrid}>
           {otherTypes.map((type) => (
             <div
@@ -130,7 +123,6 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
         </div>
       </nav>
 
-      {/* 最下部：TOPへ戻る */}
       <div className={styles.backButtonArea}>
         <button className={styles.backButton} onClick={onBackToTop}>
           profile TOPへもどる

@@ -4,17 +4,26 @@
 profile詳細ページ
 ====================================================　*/
 .detailContainer {
-  max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
+}
+@media screen and (max-width: 767.98px){
+  .detailContainer {
+    padding: 0;
+  }
 }
 
 .mainContent {
   background: rgba(0, 0, 0, 0.9);
   border: 1px solid #000;
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 40px;
   margin-bottom: 60px;
+}
+@media screen and (max-width: 767.98px){
+  .mainContent {
+    padding: 20px;
+  }
 }
 
 .title {
@@ -22,9 +31,12 @@ profile詳細ページ
   margin-bottom: 32px;
   text-align: center;
   color: #d8bf9f;
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
-/* レイアウトエリア：画像がある時は横並び、無い時は自動的にテキストが広がる */
 .contentBody {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,14 +46,16 @@ profile詳細ページ
       -ms-flex-align: start;
           align-items: flex-start;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; /* スマホ表示用 */
+      flex-wrap: wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
 }
 
-/* 画像ラッパー */
 .imageWrapper {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 300px;
-          flex: 0 0 300px; /* 画像の幅を固定 */
+          flex: 0 0 300px;
 }
 
 .profileImg {
@@ -51,7 +65,6 @@ profile詳細ページ
      object-fit: cover;
 }
 
-/* テキストラッパー：残りの領域いっぱいに広がる */
 .textsWrapper {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -76,4 +89,24 @@ profile詳細ページ
   line-height: 1.8;
 }
 
-/* 下部ナビゲーションエリア等のCSSは前述と同様 */
+.otherCardsGrid{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2em;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+  div{
+    cursor: pointer;
+    img{
+      border-radius: 10px;
+    }
+  }
+}

@@ -75,7 +75,7 @@ function Folders() {
               {/* ---------- text ---------- */}
               <div className={styles['present-content']}>
                 <p className="cinzel">
-                  Go to Profile
+                  Go to <br className='for_sp' />Profile
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ function Folders() {
               {/* ---------- text ---------- */}
               <div className={styles['present-content']}>
                 <p className="cinzel">
-                  Go to Works
+                  Go to <br className='for_sp' />Works
                 </p>
               </div>
 

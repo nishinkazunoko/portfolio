@@ -3,11 +3,11 @@ import workImg02 from './images/2.webp'
 import workImg03 from './images/3.webp'
 import workImg04 from './images/4.webp'
 import workImg05 from './images/5.webp'
-import mockImg01 from './images/mock01.jpg'
-import mockImg02 from './images/mock02.jpg'
-import mockImg03 from './images/mock03.jpg'
-import mockImg04 from './images/mock04.jpg'
-import mockImg05 from './images/mock05.jpg'
+import mockImg01 from './images/mock01.webp'
+import mockImg02 from './images/mock02.webp'
+import mockImg03 from './images/mock03.webp'
+import mockImg04 from './images/mock04.webp'
+import mockImg05 from './images/mock05.webp'
 
 
 interface WorkItem{

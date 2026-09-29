@@ -8,11 +8,22 @@ import Profile from './components/Profile/Profile'
 import Works from './components/Works/Works'
 import Header from './components/Header/Header'
 import { TrollBattleGame } from './components/MaigicWorld/TrollBattleGame'
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 function App() {
   
   return (
     <>
+     <ScrollToTop />
     <Loading />
     <Header />
     <main className="portfolio">

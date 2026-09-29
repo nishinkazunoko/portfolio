@@ -20,6 +20,14 @@ folder-icons
   width: 100%;
   margin: 0 auto;
 }
+@media screen and (max-width: 767.98px){
+  .folders{
+    margin-top: 0px;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    gap: 0;
+  }
+}
 
 .present-container {
   width: 350px;
@@ -45,6 +53,7 @@ folder-icons
 @media screen and (max-width: 767.98px){
   .present-container {
     height: 300px;
+    width: 150px;
   }
 }
 
@@ -126,6 +135,12 @@ folder-icons
   width: 100%;
   height: 280px;
 }
+@media screen and (max-width: 767.98px){
+  .present-box {
+    max-width: 200px;
+    height: 220px;
+  }
+}
 
 .box-body {
   position: absolute;
@@ -139,6 +154,12 @@ folder-icons
   overflow: hidden;
   z-index: 1;
 }
+@media screen and (max-width: 767.98px){
+  .box-body {
+    height: 140px;
+  }
+}
+
 .present-lid {
   position: absolute;
   top: 40px;
@@ -322,6 +343,20 @@ folder-icons
     background-color: #fff;
   }
 }
+@media screen and (max-width: 767.98px){
+  .present-content {
+    opacity: 1;
+    top: 50%;
+    left: unset;
+    -webkit-transform: unset;
+        -ms-transform: unset;
+            transform: unset;
+    p{
+      font-size: 20px;
+    }
+  }
+}
+
 
 
 .pop-text {

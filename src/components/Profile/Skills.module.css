@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* ===================================================
+skills
+====================================================　*/
+
+.skill{
+  background: #191919;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 60px;
+
+  h2{
+    font-size: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+    color: #d8bf9f;
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+.skillCards{
+  display: grid;
+  grid-template-columns: 31% 31% 31%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+
+}
+.skillCard{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+  h3{
+    font-size: 18px;
+  }
+  img{
+    max-width: 60px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

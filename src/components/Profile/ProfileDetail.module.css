@@ -5,7 +5,7 @@ profile詳細ページ
 ====================================================　*/
 .detailContainer {
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 0px;
 }
 @media screen and (max-width: 767.98px){
   .detailContainer {
@@ -14,7 +14,7 @@ profile詳細ページ
 }
 
 .mainContent {
-  background: rgba(0, 0, 0, 0.9);
+  background: #191919;
   border: 1px solid #000;
   border-radius: 10px;
   padding: 40px;
@@ -37,28 +37,17 @@ profile詳細ページ
   font-style: normal;
 }
 
-.contentBody {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 30px;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-}
+/* .contentBody {
+
+} */
 
 .imageWrapper {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 300px;
-          flex: 0 0 300px;
+  margin: 0 auto 20px;
+  text-align: center;
 }
 
 .profileImg {
+  max-width: 400px;
   width: 100%;
   border-radius: 10px;
   -o-object-fit: cover;
@@ -77,9 +66,9 @@ profile詳細ページ
 }
 
 .heading {
-  font-size: 16px;
+  font-size: 20px;
   color: #d8bf9f;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 

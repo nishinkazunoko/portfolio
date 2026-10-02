@@ -34,9 +34,7 @@ function Loading() {
         <div className={styles.text}>
           <p>
             <b>
-              技術で当たり前を創る。
-              <br />
-              すべての人へ届く、妥協しないWeb体験。
+              技術で、当たり前を創る。
             </b>
           </p>
         </div>

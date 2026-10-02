@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import styles from './ProfileDetail.module.css';
 import profileImg01 from './images/profile01.jpg'; // CAREER用画像
 import cargImg01 from './images/card01.png';
 import cargImg02 from './images/card02.png';
 import cargImg03 from './images/card03.png';
-
+import { SkillsDetail } from './SkillsDetail';
 export type CardType = 'CAREER' | 'SKILLS' | 'HOBBY';
 
 interface ProfileDetailProps {
@@ -15,7 +16,7 @@ interface ProfileDetailProps {
 // 1. 各カードの詳細データをまとめて管理
 interface SectionDetail {
   title: string;
-  image?: string; // 画像はあってもなくてもOK（optional）
+  image?: string;
   texts: {
     heading?: string;
     body: string;
@@ -37,7 +38,7 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
       },
       {
         heading: '2022年10月〜現在 〜 株式会社ブレストメディアサポート（Webエンジニア / コーダー）',
-        body: '大手メディアポータルサイトの運営をはじめ、LPやコーポレートサイトなど多数のWebサイト制作・運用を担当。',
+        body: 'Webコーダーとして、大手メディアポータルサイトの運営をはじめ、Webサイト・Webツールの実装、サイトの制作・保守を担当。REST APIやGASを活用したツール開発・データ連携にも対応。',
       },
     ],
   },
@@ -45,13 +46,13 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
     title: 'SKILLS',
     texts: [
       {
-        heading: 'HTML / CSS / Sass / JavaScript',
-        body: 'セマンティックなマークアップ、レスポンシブ対応、CSS/SCSS設計、JavaScriptによる動きのあるUI実装。',
+        heading: 'HTML / CSS / Sass / JavaScript / PHP / Wordpress / React / Google App Script',
+        body: 'セマンティックなマークアップ、レスポンシブ対応、CSS/SCSS設計、JavaScriptによる動きのあるUI実装。特にアクセシビリティに力を入れている。',
       },
-      {
-        heading: 'React / TypeScript / Next.js',
-        body: 'コンポーネント設計、状態管理、モダンなフロントエンド開発。',
-      },
+      // {
+      //   heading: 'React / TypeScript / Next.js',
+      //   body: 'コンポーネント設計、状態管理、モダンなフロントエンド開発。',
+      // },
     ],
   },
   HOBBY: {
@@ -61,6 +62,18 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
       {
         heading: 'Web制作・個人開発',
         body: '新しい技術に触れたり、インタラクティブなUIを作成するのが好きです。',
+      },
+      {
+        heading: '英語の勉強',
+        body: '夢である「英検一級合格」に向けて日々単語を中心に勉強に励んでいる。',
+      },
+      {
+        heading: 'バレエ',
+        body: '幼少期にモダンバレエを習っていたことがきっかけで、2024年に15年ぶりにバレエを再開。今の目標は、トゥシューズを履いて踊ること。',
+      },
+      {
+        heading: '麻雀',
+        body: '2026年8月に木村拓哉さんのYoutubeチャンネルを見たことがきっかけで麻雀始める。今は雀荘の麻雀教室にも通いながら、フリーで打てる日を目指し、楽しくプレイしている',
       },
     ],
   },
@@ -79,35 +92,45 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
     (type) => type !== activeType
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeType])
+
   return (
     <div className={styles.detailContainer}>
-      <section className={styles.mainContent}>
-        <h2 className={styles.title}>{currentData.title}</h2>
-
-        <div className={styles.contentBody}>
-          {currentData.image && (
-            <div className={styles.imageWrapper}>
-              <img
-                src={currentData.image}
-                alt={currentData.title}
-                className={styles.profileImg}
-              />
-            </div>
-          )}
-
-          <div className={styles.textsWrapper}>
-            {currentData.texts.map((item, index) => (
-              <div key={index} className={styles.textBlock}>
-                {item.heading && <h3 className={styles.heading}>{item.heading}</h3>}
-                <p className={styles.bodyText}>{item.body}</p>
+  
+      {activeType === 'SKILLS' ? (
+        <SkillsDetail />
+      ) : (
+        <section className={styles.mainContent}>
+          <h2 className={styles.title}>{currentData.title}</h2>
+  
+          <div className={styles.contentBody}>
+            {currentData.image && (
+              <div className={styles.imageWrapper}>
+                <img
+                  src={currentData.image}
+                  alt={currentData.title}
+                  className={styles.profileImg}
+                />
               </div>
-            ))}
+            )}
+  
+            <div className={styles.textsWrapper}>
+              {currentData.texts.map((item, index) => (
+                <div key={index} className={styles.textBlock}>
+                  {item.heading && (
+                    <h3 className={styles.heading}>{item.heading}</h3>
+                  )}
+                  <p className={styles.bodyText}>{item.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      )}
+  
       <nav className={styles.otherCardsSection}>
-        {/* <p className={styles.subTitle}>OTHER CARDS</p> */}
         <div className={styles.otherCardsGrid}>
           {otherTypes.map((type) => (
             <div
@@ -121,12 +144,13 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
           ))}
         </div>
       </nav>
-
+  
       <div className={styles.backButtonArea}>
         <button className={styles.backButton} onClick={onBackToTop}>
           profile TOPへもどる
         </button>
       </div>
+  
     </div>
   );
 }

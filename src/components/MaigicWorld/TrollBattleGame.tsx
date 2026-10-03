@@ -1,36 +1,105 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './MagicWorld.module.css';
 import Wand from '../Wand/Wand';
-
+import Monster from './images/monster.png'
 type GameState = 'TUTORIAL' | 'PLAYING' | 'CLEAR' | 'GAMEOVER';
 
 interface Target {
   id: number;
   name: string;
   offsetX: number;
-  offsetY: number; 
+  offsetY: number;
   radius: number;
 }
 
 const TARGET_LIST: Target[] = [
-  { id: 1, name: '頭部', offsetX: 0, offsetY: -90, radius: 24 },
-  { id: 2, name: '右腕', offsetX: -80, offsetY: -20, radius: 22 },
-  { id: 3, name: '左腕', offsetX: 80, offsetY: -20, radius: 22 },
-  { id: 4, name: '胸部', offsetX: 0, offsetY: -20, radius: 26 },
-  { id: 5, name: '腹部', offsetX: 0, offsetY: 40, radius: 25 },
+  { id: 1, name: '頭部', offsetX: 0, offsetY: -50, radius: 26 },    // 顔・鼻のあたり
+  { id: 2, name: '右腕', offsetX: -95, offsetY: 10, radius: 24 },   // 右手のこんぼう
+  { id: 3, name: '左腕', offsetX: 60, offsetY: 50, radius: 24 },    // 左手（向かって右下）
+  { id: 4, name: '胸部', offsetX: 0, offsetY: 15, radius: 26 },     // 服の上部
+  { id: 5, name: '腹部', offsetX: 0, offsetY: 65, radius: 24 },     // 服の下部・足元付近
 ];
 
+// --- 1文字ずつタイピング表示するコンポーネント ---
+interface TypewriterTextProps {
+  text: string;
+  speed?: number;
+  onComplete?: () => void;
+  className?: string;
+  isActive?: boolean;
+}
+
+const TypewriterText: React.FC<TypewriterTextProps> = ({
+  text,
+  speed = 100,
+  onComplete,
+  className = '',
+  isActive = true,
+}) => {
+  const [displayedText, setDisplayedText] = useState('');
+
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  useEffect(() => {
+    setDisplayedText('');
+    let index = 0;
+
+    const timer = setInterval(() => {
+      index++;
+      if (index <= text.length) {
+        setDisplayedText(text.slice(0, index));
+      } else {
+        clearInterval(timer);
+        if (onCompleteRef.current) {
+          onCompleteRef.current();
+        }
+      }
+    }, speed);
+
+    return () => clearInterval(timer);
+  }, [text, speed]);
+
+  return (
+    <p
+      className={`${styles.typewriterLine} ${
+        isActive ? styles.activeCursor : ''
+      } ${className}`}
+    >
+      {displayedText}
+    </p>
+  );
+};
+
+// --- メインコンポーネント ---
 export const TrollBattleGame: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>('TUTORIAL');
   const [timeLeft, setTimeLeft] = useState<number>(15);
   const [currentTargetIndex, setCurrentTargetIndex] = useState<number>(0);
-  
+  const [typingStep, setTypingStep] = useState<number>(0);
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animFrameId = useRef<number | null>(null);
-  
-  const swingAngleRef = useRef<number>(0);
-  const particlesRef = useRef<Array<{ x: number; y: number; vx: number; vy: number; alpha: number; color: string }>>([]);
+  const trollImageRef = useRef<HTMLImageElement | null>(null);
+  const isImageLoadedRef = useRef<boolean>(false);
 
+  const swingAngleRef = useRef<number>(0);
+  const particlesRef = useRef<
+    Array<{ x: number; y: number; vx: number; vy: number; alpha: number; color: string }>
+  >([]);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = Monster;
+    img.onload = () => {
+      isImageLoadedRef.current = true;
+    };
+    trollImageRef.current = img;
+  }, []);
+
+  // 制限時間タイマー
   useEffect(() => {
     if (gameState !== 'PLAYING') return;
 
@@ -48,6 +117,7 @@ export const TrollBattleGame: React.FC = () => {
     return () => clearInterval(timer);
   }, [gameState]);
 
+  // Canvas描画ループ
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -58,73 +128,46 @@ export const TrollBattleGame: React.FC = () => {
 
     const render = (time: number) => {
       const elapsed = (time - startTime) / 1000;
-      const swingX = Math.sin(elapsed * 2.5) * 45; 
+      const swingX = Math.sin(elapsed * 2.5) * 40;
       swingAngleRef.current = swingX;
 
       const centerX = canvas.width / 2 + swingX;
-      const centerY = canvas.height / 2 + 20;
+      const centerY = canvas.height / 2;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // ここからトロールのcanvas
+      // 1. 足元の影
       ctx.beginPath();
-      ctx.ellipse(canvas.width / 2 + swingX * 0.3, centerY + 160, 90, 20, 0, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+      ctx.ellipse(canvas.width / 2 + swingX * 0.3, centerY + 120, 80, 16, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
       ctx.fill();
 
-      // 胴体
-      ctx.beginPath();
-      ctx.ellipse(centerX, centerY, 70, 90, 0, 0, Math.PI * 2);
-      ctx.fillStyle = '#4a5d3e'; // トロールの色
-      ctx.fill();
-      ctx.strokeStyle = '#2d3b25';
-      ctx.lineWidth = 4;
-      ctx.stroke();
+      // 2. PNGトロール画像の描画 (300px × 300px 正方形)
+      const imgWidth = 300;
+      const imgHeight = 300;
 
-      // 頭
-      ctx.beginPath();
-      ctx.arc(centerX, centerY - 90, 50, 0, Math.PI * 2);
-      ctx.fillStyle = '#556b47';
-      ctx.fill();
-      ctx.stroke();
+      if (isImageLoadedRef.current && trollImageRef.current) {
+        ctx.drawImage(
+          trollImageRef.current,
+          centerX - imgWidth / 2,
+          centerY - imgHeight / 2,
+          imgWidth,
+          imgHeight
+        );
+      } else {
+        // 画像読み込み完了前のフォールバック表示
+        ctx.fillStyle = '#6b8e23';
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 80, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-      // 目（赤く光る）
-      ctx.fillStyle = '#ff3333';
-      ctx.beginPath();
-      ctx.arc(centerX - 18, centerY - 100, 7, 0, Math.PI * 2);
-      ctx.arc(centerX + 18, centerY - 100, 7, 0, Math.PI * 2);
-      ctx.fill();
-
-      // 牙
-      ctx.fillStyle = '#fff8dc';
-      ctx.beginPath();
-      ctx.moveTo(centerX - 15, centerY - 75);
-      ctx.lineTo(centerX - 10, centerY - 88);
-      ctx.lineTo(centerX - 5, centerY - 75);
-      ctx.moveTo(centerX + 5, centerY - 75);
-      ctx.lineTo(centerX + 10, centerY - 88);
-      ctx.lineTo(centerX + 15, centerY - 75);
-      ctx.fill();
-
-      // 腕（右・左）
-      ctx.fillStyle = '#4a5d3e';
-      ctx.beginPath(); // 左腕
-      ctx.arc(centerX - 80, centerY - 20, 30, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.beginPath(); // 右腕
-      ctx.arc(centerX + 80, centerY - 20, 30, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      // まと
+      // 3. ターゲット（的）の描画
       if (gameState === 'PLAYING' && currentTargetIndex < TARGET_LIST.length) {
         const target = TARGET_LIST[currentTargetIndex];
         const targetX = centerX + target.offsetX;
         const targetY = centerY + target.offsetY;
 
-        // 外側のえん
         ctx.save();
         ctx.translate(targetX, targetY);
         ctx.rotate(elapsed * 3);
@@ -136,16 +179,14 @@ export const TrollBattleGame: React.FC = () => {
         ctx.stroke();
         ctx.restore();
 
-        // 中心
         ctx.beginPath();
         ctx.arc(targetX, targetY, target.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 50, 50, 0.35)';
+        ctx.fillStyle = 'rgba(255, 50, 50, 0.4)';
         ctx.fill();
         ctx.strokeStyle = '#ff3333';
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // じゅう字線
         ctx.beginPath();
         ctx.moveTo(targetX - target.radius - 4, targetY);
         ctx.lineTo(targetX + target.radius + 4, targetY);
@@ -156,6 +197,7 @@ export const TrollBattleGame: React.FC = () => {
         ctx.stroke();
       }
 
+      // 4. 打撃パーティクルの描画
       particlesRef.current.forEach((p, index) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -190,16 +232,14 @@ export const TrollBattleGame: React.FC = () => {
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    // 現在のトロール座標
     const swingX = swingAngleRef.current;
     const centerX = canvas.width / 2 + swingX;
-    const centerY = canvas.height / 2 + 20;
+    const centerY = canvas.height / 2;
 
     const target = TARGET_LIST[currentTargetIndex];
     const targetX = centerX + target.offsetX;
     const targetY = centerY + target.offsetY;
 
-    // クリック位置とターゲット中心の距離計算
     const dist = Math.hypot(clickX - targetX, clickY - targetY);
 
     if (dist <= target.radius + 10) {
@@ -214,7 +254,6 @@ export const TrollBattleGame: React.FC = () => {
         });
       }
 
-      // 次の的に移動
       if (currentTargetIndex + 1 >= TARGET_LIST.length) {
         setGameState('CLEAR');
       } else {
@@ -227,6 +266,7 @@ export const TrollBattleGame: React.FC = () => {
     setCurrentTargetIndex(0);
     setTimeLeft(15);
     setGameState('PLAYING');
+    setTypingStep(0);
   };
 
   return (
@@ -240,7 +280,6 @@ export const TrollBattleGame: React.FC = () => {
         </div>
       </div>
 
-      {/* ゲームCanvas */}
       <canvas
         ref={canvasRef}
         width={700}
@@ -253,16 +292,38 @@ export const TrollBattleGame: React.FC = () => {
       {gameState === 'TUTORIAL' && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
-            <h2>魔法界い迷い込んでしまったようだ......!</h2>
-            <p className='mt-20'>あ！トロールに見つかってしまった！</p>
-            <p>トロールを倒して魔法界から人間界へ戻ろう！</p>
-            <div className={styles.ruleBox}>
-              <p>⚡ 杖でトロールの体に現れる*5つの的*を狙い撃って！</p>
-              <p>⏱ 制限時間: *15秒*</p>
+            <h2>魔法界へ迷い込んでしまったようだ......!</h2>
+
+            <div className={styles.typewriterContainer}>
+              <TypewriterText
+                text="あ！トロールに見つかってしまった！"
+                speed={100}
+                isActive={typingStep === 0}
+                onComplete={() => setTypingStep(1)}
+              />
+
+              {typingStep >= 1 && (
+                <TypewriterText
+                  text="トロールを倒して魔法界から人間界へ戻ろう！"
+                  speed={100}
+                  isActive={typingStep === 1}
+                  onComplete={() => setTypingStep(2)}
+                />
+              )}
             </div>
-            <button onClick={startGame} className={styles.startButton}>
-              戦闘開始！
-            </button>
+
+            {typingStep >= 2 && (
+              <>
+                <div className={`${styles.ruleBox} ${styles.fadeIn}`}>
+                  <p>⚡ 杖でトロールの体に現れる5つの的を狙い撃って！</p>
+                  <p>⏱ 制限時間: 15秒</p>
+                  <p>このゲームはcursorとのバイブコーディングで作成しました。</p>
+                </div>
+                <button onClick={startGame} className={`${styles.startButton} ${styles.fadeIn}`}>
+                  戦闘開始！
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -273,7 +334,7 @@ export const TrollBattleGame: React.FC = () => {
           <div className={styles.modalContent}>
             <h2 className={styles.clearTitle}>VICTORY!</h2>
             <p>やったね！人間界へ戻るゲートが開いたよ！</p>
-            <button onClick={() => window.location.href = '/'} className={styles.nextButton}>
+            <button onClick={() => (window.location.href = '/')} className={styles.nextButton}>
               人間界へ戻る
             </button>
           </div>

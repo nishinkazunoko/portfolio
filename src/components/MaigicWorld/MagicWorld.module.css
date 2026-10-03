@@ -193,6 +193,10 @@ TrollBattleGame
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  h2{
+    margin-bottom: 15px;
+  }
+  cursor: none;
 }
 
 .canvas {
@@ -269,7 +273,7 @@ TrollBattleGame
 }
 
 .startButton, .nextButton, .retryButton {
-  margin-top: 15px;
+  margin:15px auto 0;
   padding: 12px 30px;
   font-size: 1rem;
   font-weight: bold;
@@ -317,4 +321,65 @@ TrollBattleGame
 .overTitle {
   color: #ff4444;
   text-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
+}
+/* ===================================================
+typewritting
+====================================================*/
+
+/* 打っている最中のカーソル演出 */
+.typewriterContainer p {
+  display: block;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.typewriterContainer p::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 3px;
+  color: #ffdd44;
+  -webkit-animation: blink 0.7s infinite;
+          animation: blink 0.7s infinite;
+}
+
+@-webkit-keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ルール・ボタンのフェードイン */
+.fadeIn {
+  -webkit-animation: fadeInAnim 0.4s ease-out forwards;
+          animation: fadeInAnim 0.4s ease-out forwards;
+}
+
+@-webkit-keyframes fadeInAnim {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(8px);
+            transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeInAnim {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(8px);
+            transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
 }

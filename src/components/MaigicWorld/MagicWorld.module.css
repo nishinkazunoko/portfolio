@@ -179,8 +179,8 @@ TrollBattleGame
 
 .gameContainer {
   position: relative;
-  width: 700px;
-  height: 500px;
+  max-width: 700px;
+  width: 100%;
   margin: 40px auto;
   background: -o-radial-gradient(center, circle, #1a1a3a 0%, #080815 100%);
   background: radial-gradient(circle at center, #1a1a3a 0%, #080815 100%);
@@ -196,14 +196,20 @@ TrollBattleGame
   h2{
     margin-bottom: 15px;
   }
+
   cursor: none;
 }
-
+@media (max-width: 768px) {
+  .gameContainer {
+    overflow: visible;
+  }
+}
 .canvas {
+  width: 100%;
+  height: auto;
   display: block;
   cursor: crosshair;
 }
-
 .uiHeader {
   position: absolute;
   top: 15px;
@@ -237,7 +243,7 @@ TrollBattleGame
 .modalOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(5, 5, 12, 0.85);
+  background: rgba(5, 5, 12, 0.88);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   display: -webkit-box;
@@ -250,36 +256,86 @@ TrollBattleGame
       -ms-flex-align: center;
           align-items: center;
   z-index: 20;
+  padding: 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-
+@media (max-width: 768px) {
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    min-height: 100dvh;
+    padding: 16px;
+  }
+}
 .modalContent {
   background: #12122b;
   border: 1px solid rgba(130, 130, 255, 0.5);
-  padding: 30px 40px;
+  padding: 20px;
   border-radius: 12px;
+  width: calc(100% - 24px);
+  max-width: 480px;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
   text-align: center;
   color: #ffffff;
   -webkit-box-shadow: 0 0 25px rgba(66, 66, 209, 0.5);
           box-shadow: 0 0 25px rgba(66, 66, 209, 0.5);
-}
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 
+  /* 高さをコンテンツに合わせる */
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+@media (max-width: 768px) {
+  .modalContent {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 20px 16px;
+  }
+}
 .ruleBox {
-  margin: 20px 0;
-  padding: 12px;
+  margin: 8px 0;
+  padding: 8px 12px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: clamp(0.75rem, 2.4cqi, 0.88rem);
+  line-height: 1.45;
+  text-align: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .startButton, .nextButton, .retryButton {
-  margin:15px auto 0;
-  padding: 12px 30px;
-  font-size: 1rem;
+  margin: 15px auto 0;
+  padding: 10px 24px;
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
   font-weight: bold;
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  max-width: 100%;
   -webkit-transition: -webkit-transform 0.2s, -webkit-box-shadow 0.2s;
   transition: -webkit-transform 0.2s, -webkit-box-shadow 0.2s;
   -o-transition: transform 0.2s, box-shadow 0.2s;
@@ -330,7 +386,7 @@ typewritting
 .typewriterContainer p {
   display: block;
   position: relative;
-  margin-bottom: 8px;
+  margin: 4px 0;
 }
 
 .typewriterContainer p::after {

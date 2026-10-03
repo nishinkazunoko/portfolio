@@ -228,9 +228,16 @@ export const TrollBattleGame: React.FC = () => {
 
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const rect = canvas.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
+
+    // ★重要: CSSで伸縮された表示サイズと Canvas内部解像度(700x500)の比率を計算
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    // 比率を掛けて Canvas内部座標に変換
+    const clickX = (e.clientX - rect.left) * scaleX;
+    const clickY = (e.clientY - rect.top) * scaleY;
 
     const swingX = swingAngleRef.current;
     const centerX = canvas.width / 2 + swingX;
@@ -243,6 +250,7 @@ export const TrollBattleGame: React.FC = () => {
     const dist = Math.hypot(clickX - targetX, clickY - targetY);
 
     if (dist <= target.radius + 10) {
+      // 当たり判定処理...
       for (let i = 0; i < 20; i++) {
         particlesRef.current.push({
           x: targetX,

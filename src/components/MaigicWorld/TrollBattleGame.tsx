@@ -224,33 +224,51 @@ export const TrollBattleGame: React.FC = () => {
   }, [gameState, currentTargetIndex]);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (gameState !== 'PLAYING' || currentTargetIndex >= TARGET_LIST.length) return;
-
+    if (gameState !== 'PLAYING' || currentTargetIndex >= TARGET_LIST.length) {
+      return;
+    }
+  
     const canvas = canvasRef.current;
     if (!canvas) return;
-
+  
     const rect = canvas.getBoundingClientRect();
-
-    // ★重要: CSSで伸縮された表示サイズと Canvas内部解像度(700x500)の比率を計算
+  
+    // CSSで縮小された表示サイズと
+    // Canvas内部解像度（700 × 500）の比率を計算
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-
-    // 比率を掛けて Canvas内部座標に変換
+  
+    // クリック位置をCanvas内部座標へ変換
     const clickX = (e.clientX - rect.left) * scaleX;
     const clickY = (e.clientY - rect.top) * scaleY;
-
+  
     const swingX = swingAngleRef.current;
     const centerX = canvas.width / 2 + swingX;
     const centerY = canvas.height / 2;
-
+  
     const target = TARGET_LIST[currentTargetIndex];
+  
     const targetX = centerX + target.offsetX;
     const targetY = centerY + target.offsetY;
-
-    const dist = Math.hypot(clickX - targetX, clickY - targetY);
-
-    if (dist <= target.radius + 10) {
-      // 当たり判定処理...
+  
+    // クリック位置と的の距離
+    const dist = Math.hypot(
+      clickX - targetX,
+      clickY - targetY
+    );
+  
+    // スマホ・タブレットなどのタッチ操作では
+    // 少しだけ当たり判定を広げる
+    const isTouchDevice = window.matchMedia(
+      '(pointer: coarse)'
+    ).matches;
+  
+    const hitRadius = isTouchDevice
+      ? target.radius + 25
+      : target.radius + 10;
+  
+    if (dist <= hitRadius) {
+      // 当たり判定処理
       for (let i = 0; i < 20; i++) {
         particlesRef.current.push({
           x: targetX,
@@ -261,7 +279,7 @@ export const TrollBattleGame: React.FC = () => {
           color: '255, 220, 50',
         });
       }
-
+  
       if (currentTargetIndex + 1 >= TARGET_LIST.length) {
         setGameState('CLEAR');
       } else {

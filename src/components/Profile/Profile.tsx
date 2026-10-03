@@ -41,7 +41,7 @@ function Profile() {
           onClick={() => handleCardClick('CAREER')}
         >
           <div className={styles['profile__front']}>
-            <img src={cargImg01} alt="CAREER" />
+            <img src={cargImg01} alt="CAREER" loading='eager'/>
           </div>
         </li>
 
@@ -54,7 +54,7 @@ function Profile() {
           onClick={() => handleCardClick('SKILLS')}
         >
           <div className={styles['profile__front']}>
-            <img src={cargImg02} alt="SKILLS" />
+            <img src={cargImg02} alt="SKILLS"  loading='eager'/>
           </div>
         </li>
 
@@ -67,7 +67,7 @@ function Profile() {
           onClick={() => handleCardClick('HOBBY')}
         >
           <div className={styles['profile__front']}>
-            <img src={cargImg03} alt="HOBBY" />
+            <img src={cargImg03} alt="HOBBY"  loading='eager'/>
           </div>
         </li>
 

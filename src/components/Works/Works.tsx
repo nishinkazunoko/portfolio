@@ -14,7 +14,7 @@ function Works() {
     <section className={`${styles['works']} ${styles['works-detail']}`}>
       <h2>{work.title}</h2>
         <div className={styles['mock-img']}>
-          <img src={work.mockImg} alt={work.title} />
+          <img src={work.mockImg} alt={work.title} loading="eager"/>
         </div>
           <a href={work.link} target="_blank" className={styles['work-icon']}>
             view site

@@ -108,6 +108,7 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
                   src={currentData.image}
                   alt={currentData.title}
                   className={styles.profileImg}
+                  loading='eager'
                 />
               </div>
             )}

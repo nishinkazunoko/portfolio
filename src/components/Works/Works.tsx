@@ -29,7 +29,13 @@ function Works() {
           <h3>背景・課題</h3>
           <p>{work.task}</p>
           <h3>取り組み</h3>
-          <p>{work.workOn}</p>
+          {work.workOn.map((text,index) =>(
+            <p 
+              key={index} 
+              dangerouslySetInnerHTML={{ __html: text }} 
+            />
+          ))}
+          {/* <p>{work.workOn}</p> */}
           <h3>結果</h3>
           <p>{work.result}</p>
 

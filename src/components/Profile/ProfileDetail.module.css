@@ -99,3 +99,15 @@ profile詳細ページ
     }
   }
 }
+.backButtonArea{
+  margin: 30px auto;
+  text-align: center;
+  button{
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 9999px;
+    font-size: 15px;
+    margin: 0 auto;
+  }
+}

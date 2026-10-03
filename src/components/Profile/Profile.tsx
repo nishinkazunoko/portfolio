@@ -5,24 +5,18 @@ import cargImg02 from './images/card02.png';
 import cargImg03 from './images/card03.png';
 import { ProfileDetail, type CardType } from './ProfileDetail';
 function Profile() {
-  // 表示中の詳細画面タイプ
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
-  // 回転アニメーション中のカードタイプ
   const [rotatingCard, setRotatingCard] = useState<CardType | null>(null);
 
-  // カードがクリックされたときの処理
   const handleCardClick = (type: CardType) => {
-    // 1. 回転アニメーション用のクラスを付与
     setRotatingCard(type);
 
-    // 2. アニメーション完了（0.8秒後）に詳細ページを表示
     setTimeout(() => {
       setSelectedCard(type);
-      setRotatingCard(null); // 回転状態をリセット
+      setRotatingCard(null); 
     }, 800);
   };
 
-  // 詳細ページを表示中の場合
   if (selectedCard) {
     return (
       <ProfileDetail

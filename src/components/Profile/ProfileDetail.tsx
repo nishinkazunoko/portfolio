@@ -46,13 +46,9 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
     title: 'SKILLS',
     texts: [
       {
-        heading: 'HTML / CSS / Sass / JavaScript / PHP / Wordpress / React / Google App Script',
-        body: 'セマンティックなマークアップ、レスポンシブ対応、CSS/SCSS設計、JavaScriptによる動きのあるUI実装。特にアクセシビリティに力を入れている。',
+        heading: '',
+        body: '',
       },
-      // {
-      //   heading: 'React / TypeScript / Next.js',
-      //   body: 'コンポーネント設計、状態管理、モダンなフロントエンド開発。',
-      // },
     ],
   },
   HOBBY: {
@@ -65,15 +61,15 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
       },
       {
         heading: '英語の勉強',
-        body: '夢である「英検一級合格」に向けて日々単語を中心に勉強に励んでいる。',
+        body: '夢である「英検一級合格」に向けて日々単語を中心に勉強に励んでいます。',
       },
       {
         heading: 'バレエ',
-        body: '幼少期にモダンバレエを習っていたことがきっかけで、2024年に15年ぶりにバレエを再開。今の目標は、トゥシューズを履いて踊ること。',
+        body: '幼少期にモダンバレエを習っていたことがきっかけで、2024年に15年ぶりにバレエを再開しました。今の目標は、トゥシューズを履いて踊ることです。',
       },
       {
         heading: '麻雀',
-        body: '2026年8月に木村拓哉さんのYoutubeチャンネルを見たことがきっかけで麻雀始める。今は雀荘の麻雀教室にも通いながら、フリーで打てる日を目指し、楽しくプレイしている',
+        body: '2026年8月に木村拓哉さんのYoutubeチャンネルを見たことがきっかけで麻雀を始めました。今は雀荘の麻雀教室にも通いながら、フリーで打てる日を目指し、楽しくプレイしています。',
       },
     ],
   },
@@ -139,7 +135,6 @@ export function ProfileDetail({ activeType, onSelectCard, onBackToTop }: Profile
               onClick={() => onSelectCard(type)}
             >
               <img src={CARD_THUMBNAILS[type].img} alt={type} />
-              <span>{CARD_THUMBNAILS[type].title}</span>
             </div>
           ))}
         </div>

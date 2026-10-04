@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* ローディング全体の固定フレーム（背景色は持たせない） */
 .loading {
   position: fixed;
   inset: 0;
@@ -23,19 +22,16 @@
   }
 }
 
-/* 一番下の赤背景：アニメーション完了時に画面上へ退出 */
 .redBg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   background-color: #000;
-  /* 白背景が curtainUp するタイミング（3s）に合わせて赤背景も退場 */
   -webkit-animation: curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
           animation: curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
 }
 
-/* 中央の白背景 */
 .content {
   position: absolute;
   inset: 0;
@@ -53,7 +49,6 @@
           align-items: center;
   -webkit-clip-path: circle(0%);
           clip-path: circle(0%);
-  /* 円形に広がる → 上にスライドしてメイン画面を表示 */
   -webkit-animation: 
     showCircle 1.5s ease-in-out 1s forwards,
     curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;

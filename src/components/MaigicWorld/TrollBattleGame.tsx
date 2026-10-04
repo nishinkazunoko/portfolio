@@ -20,7 +20,6 @@ const TARGET_LIST: Target[] = [
   { id: 5, name: '腹部', offsetX: 0, offsetY: 65, radius: 24 },     // 服の下部・足元付近
 ];
 
-// --- 1文字ずつタイピング表示するコンポーネント ---
 interface TypewriterTextProps {
   text: string;
   speed?: number;
@@ -73,7 +72,6 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   );
 };
 
-// --- メインコンポーネント ---
 export const TrollBattleGame: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>('TUTORIAL');
   const [timeLeft, setTimeLeft] = useState<number>(15);
@@ -99,7 +97,6 @@ export const TrollBattleGame: React.FC = () => {
     trollImageRef.current = img;
   }, []);
 
-  // 制限時間タイマー
   useEffect(() => {
     if (gameState !== 'PLAYING') return;
 
@@ -117,7 +114,6 @@ export const TrollBattleGame: React.FC = () => {
     return () => clearInterval(timer);
   }, [gameState]);
 
-  // Canvas描画ループ
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -136,13 +132,11 @@ export const TrollBattleGame: React.FC = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 1. 足元の影
       ctx.beginPath();
       ctx.ellipse(canvas.width / 2 + swingX * 0.3, centerY + 120, 80, 16, 0, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
       ctx.fill();
 
-      // 2. PNGトロール画像の描画 (300px × 300px 正方形)
       const imgWidth = 300;
       const imgHeight = 300;
 
@@ -155,14 +149,12 @@ export const TrollBattleGame: React.FC = () => {
           imgHeight
         );
       } else {
-        // 画像読み込み完了前のフォールバック表示
         ctx.fillStyle = '#6b8e23';
         ctx.beginPath();
         ctx.arc(centerX, centerY, 80, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // 3. ターゲット（的）の描画
       if (gameState === 'PLAYING' && currentTargetIndex < TARGET_LIST.length) {
         const target = TARGET_LIST[currentTargetIndex];
         const targetX = centerX + target.offsetX;
@@ -197,7 +189,6 @@ export const TrollBattleGame: React.FC = () => {
         ctx.stroke();
       }
 
-      // 4. 打撃パーティクルの描画
       particlesRef.current.forEach((p, index) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -233,12 +224,9 @@ export const TrollBattleGame: React.FC = () => {
   
     const rect = canvas.getBoundingClientRect();
   
-    // CSSで縮小された表示サイズと
-    // Canvas内部解像度（700 × 500）の比率を計算
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
   
-    // クリック位置をCanvas内部座標へ変換
     const clickX = (e.clientX - rect.left) * scaleX;
     const clickY = (e.clientY - rect.top) * scaleY;
   
@@ -251,14 +239,11 @@ export const TrollBattleGame: React.FC = () => {
     const targetX = centerX + target.offsetX;
     const targetY = centerY + target.offsetY;
   
-    // クリック位置と的の距離
     const dist = Math.hypot(
       clickX - targetX,
       clickY - targetY
     );
   
-    // スマホ・タブレットなどのタッチ操作では
-    // 少しだけ当たり判定を広げる
     const isTouchDevice = window.matchMedia(
       '(pointer: coarse)'
     ).matches;
@@ -268,7 +253,6 @@ export const TrollBattleGame: React.FC = () => {
       : target.radius + 10;
   
     if (dist <= hitRadius) {
-      // 当たり判定処理
       for (let i = 0; i < 20; i++) {
         particlesRef.current.push({
           x: targetX,

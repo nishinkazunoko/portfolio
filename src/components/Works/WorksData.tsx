@@ -3,11 +3,16 @@ import workImg02 from './images/2.webp'
 import workImg03 from './images/3.webp'
 import workImg04 from './images/4.webp'
 import workImg05 from './images/5.webp'
+import workImg06 from './images/6.webp'
+import workImg07 from './images/7.webp'
+
 import mockImg01 from './images/mock01.webp'
 import mockImg02 from './images/mock02.webp'
 import mockImg03 from './images/mock03.webp'
 import mockImg04 from './images/mock04.webp'
 import mockImg05 from './images/mock05.webp'
+import mockImg06 from './images/mock06.webp'
+import mockImg07 from './images/mock07.webp'
 
 
 interface WorkItem{
@@ -97,5 +102,35 @@ export const worksData: WorkItem[] = [
     img: workImg05,
     mockImg: mockImg05,
     link: 'https://tutor-prodigy.com',
+  },
+  {
+    id: 6, 
+    title: '手動検証によるWebアクセシビリティ改善・品質管理', 
+    inCharge: 'アクセシビリティ診断（自動・手動）・リファクタリング',
+    skills: 'axe DevTools, WAI-ARIA, WCAG',
+    task: '【状況・課題】各案件において、多様なユーザー環境への対応およびJIS X 8341-3（AAレベル）準拠が求められる中、開発プロセスにおけるアクセシビリティの検証体制と品質の標準化が課題でした。',
+    workOn: [
+      '①自動・手動を組み合わせたハイブリッド検証: ブラウザ拡張機能「axe DevTools」で機械的なエラーを早期検出・解消した上で、「SmartHR アクセシビリティチェックリスト」をベースにした手動チェックを実施。\n',
+      '②具体的なUI改善・コード修正: キーボードのフォーカスリング制御、コントラスト比の確保、セマンティックなHTML構造への見直し、必要に応じたWAI-ARIAの適切な付与を実装。'
+    ],
+    result: 'チェックシート運用による開発・レビューフローを確立。機械チェックと手動チェックの二段階で品質を担保し、主要ページにおけるアクセシビリティ上の課題を大幅に解消・標準化しました。\n※守秘義務配慮のため、サイト名等一部をマスキングしています。', 
+    img: workImg06,
+    mockImg: mockImg06,
+    link: 'https://docs.google.com/spreadsheets/d/14Mmo_H6o_4WiOCShTfABuJYPC11xvG7ErXqoouWpc9c/edit?usp=sharing',
+  },
+  {
+    id: 7, 
+    title: '【Vite + React】ポートフォリオサイト', 
+    inCharge: '企画・UI/UXデザイン・フロントエンド開発・コンポーネント設計・Viteによる開発環境構築',
+    skills: 'React, Vite, TypeScript, HTML, CSS',
+    task: '【状況・課題】開発にあたって、保守性の高いコンポーネント設計、状態管理（Hooks）の最適化、CRUD操作を見据えたデータ構造など、Reactの標準的な設計パターンを徹底して反映させることが課題でした。',
+    workOn: [
+      '①書籍・動画で定石をキャッチアップ: 技術書『りあくと！』や動画教材を通じて、コンポーネントの責務分離、状態管理（Hooks）、Viteによるモダンな開発環境の選定などを学習し実践。\n',
+      '②コンポーネントベース・データ構造の設計: 再利用性を意識したUIパーツのモジュール化と、将来的なCRUD処理（データ操作・追加・更新）を見据えたデータ構造・状態設計を実施。'
+    ],
+    result: '自己学習によりモダンReactの基本思想を短期間で習得し、実装・設計の両面からフロントエンドエンジニアとしての基礎体力を提示できるプロダクトを構築しました。', 
+    img: workImg07,
+    mockImg: mockImg07,
+    link: 'https://portfolio-puce-eight-nitc2s9yhc.vercel.app/',
   },
 ];

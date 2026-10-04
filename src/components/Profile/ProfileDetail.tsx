@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styles from './ProfileDetail.module.css';
-import profileImg01 from './images/profile01.jpg'; // CAREER用画像
+import profileImg01 from './images/profile01.jpg'; 
 import cargImg01 from './images/card01.png';
 import cargImg02 from './images/card02.png';
 import cargImg03 from './images/card03.png';
@@ -13,7 +13,6 @@ interface ProfileDetailProps {
   onBackToTop: () => void;
 }
 
-// 1. 各カードの詳細データをまとめて管理
 interface SectionDetail {
   title: string;
   image?: string;
@@ -53,7 +52,6 @@ const DETAIL_DATA: Record<CardType, SectionDetail> = {
   },
   HOBBY: {
     title: 'HOBBY',
-    // image は指定しない（画像なし）
     texts: [
       {
         heading: 'Web制作・個人開発',

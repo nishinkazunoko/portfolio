@@ -37,9 +37,6 @@ function Folders() {
 
   return (
     <>
-      {/* =========================
-          Folders
-      ========================= */}
 
       <div className={`${styles.folders} ${isFirstVisit ? styles['firstVisit'] : ''}`}>
         {/* Profile */}
@@ -108,12 +105,10 @@ function Folders() {
                 <div className={styles['ribbon-horizontal']} />
               </div>
 
-              {/* ---------- body ---------- */}
               <div className={styles['box-body']}>
                 <div className={styles['ribbon-vertical']} />
               </div>
 
-              {/* ---------- text ---------- */}
               <div className={styles['present-content']}>
                 <p className="cinzel">
                   Go to <br className='for_sp' />Works
@@ -125,9 +120,6 @@ function Folders() {
         </Link>
       </div>
 
-      {/* =========================
-          Magic World
-      ========================= */}
 
       <MagicWorldEnter />
     </>

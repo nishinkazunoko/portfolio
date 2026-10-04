@@ -10,7 +10,6 @@ function Loading() {
 
 
   const handleAnimationEnd = (e: React.AnimationEvent<HTMLDivElement>) => {
-    // 最後に実行される curtainUp アニメーションが終わった時だけ非表示にする
     if (e.animationName.includes('curtainUp')) {
       setLoading(false);
       sessionStorage.setItem('hasVisitedLoading', 'true');

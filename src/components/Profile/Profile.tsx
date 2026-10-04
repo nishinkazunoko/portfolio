@@ -27,12 +27,11 @@ function Profile() {
     );
   }
 
-  // 初期一覧画面
   return (
     <div className={styles.profile}>
       <ul className={styles['profile__cards']}>
 
-        {/* CARD 1: CAREER */}
+        {/* CAREER */}
         <li
           className={`
             ${styles['profile__card']}
@@ -45,7 +44,7 @@ function Profile() {
           </div>
         </li>
 
-        {/* CARD 2: SKILLS */}
+        {/* SKILLS */}
         <li
           className={`
             ${styles['profile__card']}
@@ -58,7 +57,7 @@ function Profile() {
           </div>
         </li>
 
-        {/* CARD 3: HOBBY */}
+        {/* HOBBY */}
         <li
           className={`
             ${styles['profile__card']}

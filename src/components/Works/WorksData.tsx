@@ -32,7 +32,7 @@ export const worksData: WorkItem[] = [
     id: 1, 
     title: '自作Web単語学習ツール「Tango」の開発。\n課題解決型プロダクトの開発で英検準1級合格を達成', 
     inCharge: '企画・設計・UI/UXデザイン・フロントエンド開発・運用改善',
-    skills: 'HTML5, CSS, JavaScript',
+    skills: 'HTML, CSS, JavaScript',
     task: '【状況・課題】紙の単語帳特有の「掲載順で記憶してしまう問題」を解消し、効率的に語彙を定着させる学習環境が必要でした。「苦手な単語」をリアルタイムに抽出し、ストレスなく反復学習できるデータ管理機能の実装を課題として設定しました。',
     workOn: [
       '①苦手克服機能の実装: つまずいた単語を「苦手リスト」へ登録・削除できる機能を構築。\n',
@@ -62,7 +62,7 @@ export const worksData: WorkItem[] = [
     id: 3, 
     title: '【SEO・検索1位獲得】豊橋市のニューボーンフォトスタジオ Webサイト制作', 
     inCharge: '要件定義・UI/UXデザイン・フロントエンド開発・構造化データ設計/SEO実装',
-    skills: 'HTML5, PHP, CSS, JavaScript, JSON-LD',
+    skills: 'HTML, PHP, CSS, JavaScript, JSON-LD',
     task: '【状況・課題】競合が多数存在する豊橋エリアにおいて、有料広告に頼らず「豊橋 ニューボーンフォト」等の重要地域キーワードで上位表示を獲得し、直接のWeb予約へつなげる集客構造の構築が課題でした。',
     workOn: [
       '①構造化データ（JSON-LD）の実装: LocalBusiness や Service などの Schema.org を定義し、店舗情報や撮影プランをGoogleクローラーへ正確に伝える構造化マークアップを実施。\n',
@@ -77,7 +77,7 @@ export const worksData: WorkItem[] = [
     id: 4, 
     title: 'スプレッドシート更新対応 スライダー付き特集ページ', 
     inCharge: '要件定義・UI/UXデザイン・フロントエンド開発・データ連携構築',
-    skills: 'JavaScript, GAS (Google Apps Script), HTML5, CSS',
+    skills: 'JavaScript, GAS (Google Apps Script), HTML, CSS',
     task: '【状況・課題】非エンジニアの運用担当者がコードをいじらずにコンテンツを更新できる仕組みの構築が課題でした。静的サイトの高速表示パフォーマンスを保持しつつ、運用ミスを防ぐ自動化基盤とアクセシビリティの確保を目指しました。',
     workOn: [
       '①GASを活用したデータ生成パイプライン: Googleスプレッドシートの入力データをGASで自動整形し、最適化された軽量JSONを出力する基盤を構築。<a href="https://docs.google.com/spreadsheets/d/1-cPg8OKw0QyiSoNO1LStnzd3HXNEeOm9FzLO_ls192g/edit?usp=sharing" target="_blank" style="display:inline;text-decoration:underline;">使用したスプレッドシートはこちら</a>\n',
@@ -92,7 +92,7 @@ export const worksData: WorkItem[] = [
     id: 5, 
     title: '【SEO最適化・CMS設計】家庭教師ポータル・プロフィールサイト', 
     inCharge: '要件定義・UI/UXデザイン・WordPress構築・フロントエンド開発・SEO実装',
-    skills: 'WordPress, PHP, HTML5, CSS, JavaScript',
+    skills: 'WordPress, PHP, HTML, CSS, JavaScript',
     task: '【状況・課題】信頼感が求められるプロフィール紹介に加え、将来的なブログ運用を見据えた拡張性の高いCMS基盤の構築と、ターゲット層（保護者・生徒）へ確実にアプローチするための内部SEO対策が課題でした。',
     workOn: [
       '①拡張性を見越したWordPress設計: カスタム投稿タイプやカテゴリー構造を最適化し、将来のコンテンツ追加・更新がスムーズに行える設計を実施。\n',

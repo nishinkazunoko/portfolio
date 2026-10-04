@@ -10,6 +10,18 @@
   overflow: hidden;
   pointer-events: auto;
 }
+.text{
+  p{
+    font-size: 34px;
+  }
+}
+@media (max-width: 768px) {
+  .text{
+    p{
+      font-size: 24px;
+    }
+  }
+}
 
 /* 一番下の赤背景：アニメーション完了時に画面上へ退出 */
 .redBg {
@@ -19,7 +31,8 @@
   height: 100%;
   background-color: #000;
   /* 白背景が curtainUp するタイミング（3s）に合わせて赤背景も退場 */
-  animation: curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
+  -webkit-animation: curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
+          animation: curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
 }
 
 /* 中央の白背景 */
@@ -29,30 +42,66 @@
   width: 100vw;
   height: 100vh;
   background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  clip-path: circle(0%);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-clip-path: circle(0%);
+          clip-path: circle(0%);
   /* 円形に広がる → 上にスライドしてメイン画面を表示 */
-  animation: 
+  -webkit-animation: 
+    showCircle 1.5s ease-in-out 1s forwards,
+    curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
+          animation: 
     showCircle 1.5s ease-in-out 1s forwards,
     curtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 3s forwards;
 }
 
-@keyframes showCircle {
+@-webkit-keyframes showCircle {
   from {
-    clip-path: circle(0%);
+    -webkit-clip-path: circle(0%);
+            clip-path: circle(0%);
   }
   to {
-    clip-path: circle(150%);
+    -webkit-clip-path: circle(150%);
+            clip-path: circle(150%);
+  }
+}
+
+@keyframes showCircle {
+  from {
+    -webkit-clip-path: circle(0%);
+            clip-path: circle(0%);
+  }
+  to {
+    -webkit-clip-path: circle(150%);
+            clip-path: circle(150%);
+  }
+}
+
+@-webkit-keyframes curtainUp {
+  from {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
 }
 
 @keyframes curtainUp {
   from {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   to {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
 }

@@ -18,7 +18,7 @@ const SKILLS_DATA = [
     name: 'CSS / Sass',
     icon: skillImg02,
     experience: '実務経験: 5年以上',
-    detail: 'BEM設計に基づいた保守性の高いスタイル管理。レスポンシブ対応、Sass(SCSS)によるモジュール設計。',
+    detail: 'レスポンシブ対応、Sass(SCSS)によるモジュール設計、TaliwindCSSでの実装',
   },
   {
     name: 'JavaScript',
